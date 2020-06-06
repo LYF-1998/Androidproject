@@ -3,6 +3,10 @@
     <string name="tab_menu_alert">发现</string>
     <string name="tab_menu_profile">订单</string>
     <string name="tab_menu_setting">我的</string>
+    <string name="login_title">外卖点餐</string>
+    <string name="hint_usename">用户名:</string>
+    <string name="hint_password">密码:</string>
+    <string name="copyright_information">登陆</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

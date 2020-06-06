@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
-            android:layout_marginTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="60dp"
             android:gravity="center_horizontal">
 
             <ImageView
@@ -23,16 +24,17 @@
                 android:layout_height="50dp"
                 android:background="@mipmap/ic_launcher_round"
                 android:src="@mipmap/ic_launcher_round" />
+
             <TextView
-                android:layout_toRightOf="@+id/iv_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:textSize="25sp"
+                android:layout_toRightOf="@+id/iv_logo"
+                android:gravity="center_vertical"
+                android:text="@string/login_title"
                 android:textColor="#ffffff"
-                android:text="@string/login_title"/>
+                android:textSize="25sp" />
         </RelativeLayout>
 
 
@@ -41,21 +43,21 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#ffffff"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:background="#ffffff">
 
             <EditText
                 android:id="@+id/u_usename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_usename"/>
+                android:hint="@string/hint_usename" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:background="#ffffff">
 
             <EditText
@@ -63,19 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
-                android:password="true"/>
+                android:password="true" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/u_login"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/button_shape"
-            android:text="登录"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
 
         <Button
             android:id="@+id/u_register"
@@ -85,6 +76,16 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/button_shape"
             android:text="注册"
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
+        <Button
+            android:id="@+id/u_login"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_shape"
+            android:text="已有账号，去登陆"
             android:textColor="#ffffff"
             android:textSize="25sp" />
     </LinearLayout>
@@ -97,6 +98,6 @@
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:text="登陆"/>
+        android:text="注册"/>
 
 </RelativeLayout>

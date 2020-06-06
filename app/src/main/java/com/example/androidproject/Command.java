@@ -37,7 +37,9 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_command);
             bindViews();
-
+            Intent intent = getIntent();
+            String u_username = intent.getStringExtra("u_username");
+            Toast.makeText(Command.this,"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
             HeConfig.init("HE2006012053341638", "9ba0db84d7f04b0abbcf5eabcba662b8");
             //个人开发者需要切换到免费服务域名，默认使用中国付费节点服务域名会报错
             HeConfig.switchToFreeServerNode();
@@ -88,7 +90,7 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                             Content.Location = wcity;
                             Content.Weather = wweather;
                             Content.Temperature = wtemperature;
-                            Toast.makeText(Command.this, wcity + wweather, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Command.this, wcity + wweather, Toast.LENGTH_SHORT).show();
 
                             location.setText(Content.Location);
                             weather.setText(Content.Weather + " " + Content.Temperature + "℃");
