@@ -1,4 +1,9 @@
-package com;
+/*
+  ResultSet query(String sql);查询
+  int update（String sql）；增删改
+  void close();关闭连接
+ */
+package com.example.androidproject;
 
 import java.sql.*;
 
@@ -17,24 +22,6 @@ public class JDBCUtils {
         }
     }
 
-
-    //释放资源
-//    public static void close(Statement statement, Connection connection) {
-//        if (statement != null) {
-//            try {
-//                statement.close();
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }
-//        if (connection != null) {
-//            try {
-//                connection.close();
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }
-//    }
 
     public static void close() {
         if (resultSet != null) {
