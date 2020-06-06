@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Androidproject</string>
+    <string name="tab_menu_alert">发现</string>
+    <string name="tab_menu_profile">订单</string>
+    <string name="tab_menu_setting">我的</string>
 </resources>
