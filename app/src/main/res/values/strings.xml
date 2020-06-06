@@ -3,4 +3,7 @@
     <string name="tab_menu_alert">发现</string>
     <string name="tab_menu_profile">订单</string>
     <string name="tab_menu_setting">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
