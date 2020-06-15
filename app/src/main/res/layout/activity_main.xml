@@ -5,12 +5,11 @@
     android:background="@color/bg_gray"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-
-    <Button
-        android:id="@+id/button2"
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
-
+        android:id="@+id/listview1"
+        android:divider="#C4C4C4"
+        android:dividerHeight="1dp">
+    </ListView>
 </LinearLayout>
