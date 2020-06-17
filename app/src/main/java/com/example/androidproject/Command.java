@@ -1,30 +1,20 @@
 package com.example.androidproject;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -47,12 +37,11 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
     //private List<command_item> mData = null;
     private Context mContext;
     private CommandAdapter mAdapter = null;
-    private ListView list_animal;
     private ListView listView;
     // private  String[] names={"白斩鸡","地三鲜","剁椒鱼头","干锅土豆","酸菜鱼","梅菜扣肉"};
    // private String[]  price={"23","22","18","27","14","15"};
    // private String[]  hot={"156","234","121","54","34","20"};
-   // private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou};
+    private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou};
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -84,54 +73,16 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
             location.setText(Content.Location);
             weather = (TextView) findViewById(R.id.weather);
         }
-        /*private void creatList(){
-            mContext = Command.this;
-            list_animal = (ListView) findViewById(R.id.command_list);
-            mData = new LinkedList<command_item>();
-            mData.add(new command_item("狗说", "你是狗么?","234",R.mipmap.baizhanji));
-            mData.add(new command_item("牛说", "你是牛么?","345", R.mipmap.disanxian));
-            mData.add(new command_item("鸭说", "你是鸭么?","445", R.mipmap.duojiao));
-            mData.add(new command_item("鱼说", "你是鱼么?","78", R.mipmap.ganguotudou));
-            mData.add(new command_item("马说", "你是马么?", "34",R.mipmap.meicaikourou));
-            mData.add(new command_item("马说", "你是马么?", "34",R.mipmap.yuxiangrousi));
-            mData.add(new command_item("马说", "你是马么?", "34",R.mipmap.suancaiyu));
-            mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
-            list_animal.setAdapter(mAdapter);
-        }*/
+
         private void creatList() throws ExecutionException, InterruptedException {
             mContext = Command.this;
             list_animal = (ListView) findViewById(R.id.command_list);
-            //mData = new LinkedList<command_item>();
             int inis = 0;
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                        String sql1 = "select * from order1";
-//                        ResultSet resultSet = JDBCUtils.query(sql1);
-//                       try {
-//                           int i = 0;
-//                           while (resultSet.next()) {
-//                               i++;
-//
-//                               mData.add(new command_item(resultSet.getString(
-//                                       "order_name"),
-//                                       resultSet.getString("order_price"),
-//                                       resultSet.getString("order_quantity"),
-//                                       R.mipmap.ic_launcher));
-//                               Log.i("*************",String.valueOf(i));
-//                           }
-//                       }catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }finally {
-//                           JDBCUtils.close();
-//                           Log.i("finally+++++++++","OK");
-//                       }
-//                }
-//            }).start();
             FutureTask<List<command_item>> futureTask = new FutureTask<>(new Callable<List<command_item>>() {
                 @Override
-                public List<command_item> call() throws Exception{
+                public List<command_item> call() throws Exception {
                     List<command_item> mData = new LinkedList<>();
+                    int i = 1;
                     String sql1 = "select * from order1";
                     ResultSet resultSet = JDBCUtils.query(sql1);
                     while (resultSet.next()) {
@@ -139,7 +90,8 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                                 "order_name"),
                                 resultSet.getString("order_price"),
                                 resultSet.getString("order_quantity"),
-                                R.mipmap.ic_launcher));
+                                icons[i]));
+                        i++;
                     }
                     return mData;
                 }
@@ -147,50 +99,8 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
             new Thread(futureTask).start();
             List<command_item> mData = futureTask.get();
             mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
-            list_animal.setAdapter(mAdapter);
-           /* new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String sql1 = "select * from order1 where order_id='1'";
-                    ResultSet resultSet = JDBCUtils.query(sql1);
-                    try {
-                        resultSet.next();
-                        //command1.setText(resultSet.getString("order_name"));
-                        Log.i("name:",resultSet.getString("order_name"));
-                    }catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    JDBCUtils.close();
-
-                }
-            }).start();*/
-
-
+            listView.setAdapter(mAdapter);
         }
-        /*private void creatList(){
-            mContext = Command.this;
-            list_animal = (ListView) findViewById(R.id.command_list);
-            mData = new LinkedList<command_item>();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                        String sql1 = "select * from order1";
-                        ResultSet resultSet = JDBCUtils.query(sql1);
-                    try {
-                        while (resultSet.next()) {
-                                mData.add(new command_item(resultSet.getString("order_name"), resultSet.getString("order_price"), resultSet.getString("order_quantity"), R.mipmap.baizhanji));
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    JDBCUtils.close();
-                }
-            }).start();
-            mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
-            list_animal.setAdapter(mAdapter);
-
-        }
-*/
         @Override
         protected void onStart() {
             super.onStart();
