@@ -25,6 +25,10 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
@@ -40,7 +44,7 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
         private TextView command3;
         private TextView command4;
         private TextView tv_wether, tv_location, tv_temperature;
-    private List<command_item> mData = null;
+    //private List<command_item> mData = null;
     private Context mContext;
     private CommandAdapter mAdapter = null;
     private ListView list_animal;
@@ -55,7 +59,13 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_command);
             bindViews();
-            creatList();
+            try {
+                creatList();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Intent intent = getIntent();
             String u_username = intent.getStringExtra("u_username");
             Toast.makeText(Command.this,"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
@@ -88,33 +98,54 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
             mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
             list_animal.setAdapter(mAdapter);
         }*/
-        private void creatList(){
+        private void creatList() throws ExecutionException, InterruptedException {
             mContext = Command.this;
             list_animal = (ListView) findViewById(R.id.command_list);
-            mData = new LinkedList<command_item>();
-            new Thread(new Runnable() {
+            //mData = new LinkedList<command_item>();
+            int inis = 0;
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                        String sql1 = "select * from order1";
+//                        ResultSet resultSet = JDBCUtils.query(sql1);
+//                       try {
+//                           int i = 0;
+//                           while (resultSet.next()) {
+//                               i++;
+//
+//                               mData.add(new command_item(resultSet.getString(
+//                                       "order_name"),
+//                                       resultSet.getString("order_price"),
+//                                       resultSet.getString("order_quantity"),
+//                                       R.mipmap.ic_launcher));
+//                               Log.i("*************",String.valueOf(i));
+//                           }
+//                       }catch (SQLException e) {
+//                        e.printStackTrace();
+//                    }finally {
+//                           JDBCUtils.close();
+//                           Log.i("finally+++++++++","OK");
+//                       }
+//                }
+//            }).start();
+            FutureTask<List<command_item>> futureTask = new FutureTask<>(new Callable<List<command_item>>() {
                 @Override
-                public void run() {
-                        String sql1 = "select * from order1";
-                        ResultSet resultSet = JDBCUtils.query(sql1);
-                       try {
-                           while (resultSet.next()) {
-                              // Log.i("name:", resultSet.getString("order_name"));
-                               mData.add(new command_item(resultSet.getString("order_name"), resultSet.getString("order_price"), resultSet.getString("order_quantity"), R.mipmap.baizhanji));
-                           }
-                       }catch (SQLException e) {
-                        e.printStackTrace();
-                    }finally {
-                           JDBCUtils.close();
-                       }
-
-                    Log.i("name:",mData.get(1).getName());
-
+                public List<command_item> call() throws Exception{
+                    List<command_item> mData = new LinkedList<>();
+                    String sql1 = "select * from order1";
+                    ResultSet resultSet = JDBCUtils.query(sql1);
+                    while (resultSet.next()) {
+                        mData.add(new command_item(resultSet.getString(
+                                "order_name"),
+                                resultSet.getString("order_price"),
+                                resultSet.getString("order_quantity"),
+                                R.mipmap.ic_launcher));
+                    }
+                    return mData;
                 }
-            }).start();
-if(mData!=null){
-    Log.i("nnnnn","nnnnnnn");
-}
+            });
+            new Thread(futureTask).start();
+            List<command_item> mData = futureTask.get();
             mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
             list_animal.setAdapter(mAdapter);
            /* new Thread(new Runnable() {
