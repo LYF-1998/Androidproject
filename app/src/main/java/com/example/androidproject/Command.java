@@ -76,7 +76,7 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
 
         private void creatList() throws ExecutionException, InterruptedException {
             mContext = Command.this;
-            list_animal = (ListView) findViewById(R.id.command_list);
+            listView = (ListView) findViewById(R.id.command_list);
             int inis = 0;
             FutureTask<List<command_item>> futureTask = new FutureTask<>(new Callable<List<command_item>>() {
                 @Override
