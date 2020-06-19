@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
         private TextView command3;
         private TextView command4;
         private TextView tv_wether, tv_location, tv_temperature;
-    //private List<command_item> mData = null;
+   // private List<command_item> mData = null;
     private Context mContext;
     private CommandAdapter mAdapter = null;
     private ListView listView;
@@ -83,13 +84,12 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                 public List<command_item> call() throws Exception {
                     List<command_item> mData = new LinkedList<>();
                     int i = 1;
-                    String sql1 = "select * from order1";
+                    String sql1 = "select * from shop";
                     ResultSet resultSet = JDBCUtils.query(sql1);
                     while (resultSet.next()) {
                         mData.add(new command_item(resultSet.getString(
-                                "order_name"),
-                                resultSet.getString("order_price"),
-                                resultSet.getString("order_quantity"),
+                                "shop_name"),"配送费5￥",
+                                resultSet.getString("shop_quantity"),
                                 icons[i]));
                         i++;
                     }
@@ -97,9 +97,23 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                 }
             });
             new Thread(futureTask).start();
-            List<command_item> mData = futureTask.get();
+            final List<command_item> mData = futureTask.get();
             mAdapter = new CommandAdapter((LinkedList<command_item>) mData, mContext);
             listView.setAdapter(mAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String shop_name = mData.get(i).getName();
+                    //Toast.makeText(Command.this,dishes_name,Toast.LENGTH_LONG).show();
+                    //Bundle bundle = new Bundle();
+                   // bundle.putString("shop_name", shop_name);
+
+                    Intent intent = new Intent(Command.this,Order.class);
+                    //intent.putExtras(bundle);
+                    //finish();
+                    startActivity(intent);
+                }
+            });
         }
         @Override
         protected void onStart() {
