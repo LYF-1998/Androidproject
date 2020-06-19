@@ -64,16 +64,16 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
             myFragment = new left_list_fragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, myFragment);
+            fragmentTransaction.replace(R.id.fragment_container, myFragment);
             //fragmentTransaction.hide(fragmentTransaction);
-            fragmentTransaction.show(myFragment);
+            //fragmentTransaction.show(myFragment);
             Bundle bundle1 = new Bundle();
             bundle1.putString(left_list_fragment.TAG, strs[position]);
             //bundle.putInt("shop_id", shop_id);
             //bundle.putInt("class_id",mPosition);
             myFragment.setArguments(bundle1);
             fragmentTransaction.commit();
-        
+
        /* switch (mPosition){
             case 0:
                 if(fg1 == null){
