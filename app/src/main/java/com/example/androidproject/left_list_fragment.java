@@ -55,18 +55,18 @@ public class left_list_fragment extends Fragment {
             public List<command_item> call() throws Exception {
                 List<command_item> mData = new LinkedList<>();
                 int i = 1;
-                /*String sql1 = "select order_name,order_price,order_quantity " +
-                        "from( table class left join table order1" +
-                        "on class.order_id=order1.order_id" +
-                        "where class_id="+mclass_id+"and shop_id="+mshop_id+"";*/
-                /*String sql1="select shop_name,shop_quantity from shop where" +
-                        "shop_id="+mshop_id+"";*/
-                String sql1="select * from shop where shop_id='"+mshop_id+"'";
+                String sql1 = "SELECT order1.order_name,order1.order_price,order1.order_quantity "+
+                "FROM shop "+
+                "INNER JOIN class "+
+                "ON shop.shop_id=class.shop_id "+
+                "INNER JOIN order1 "+
+                "ON order1.order_id=class.order_id "+
+                "WHERE class_id='"+mclass_id+"' and shop.shop_id='"+mshop_id+"'";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     mData.add(new command_item(resultSet.getString(
-                            "shop_name"),"配送费5￥",
-                            resultSet.getString("shop_quantity"),
+                            "order_name"),resultSet.getString("order_price"),
+                            resultSet.getString("order_quantity"),
                             icons[i]));
                     i++;
                 }
