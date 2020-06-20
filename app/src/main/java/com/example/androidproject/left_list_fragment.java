@@ -1,18 +1,23 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -50,11 +55,13 @@ public class left_list_fragment extends Fragment {
         return view;
     }
     private List<command_item> crealist(){
-        FutureTask<List<command_item>> futureTask = new FutureTask<>(new Callable<List<command_item>>() {
+        final FutureTask<List<command_item>> futureTask = new FutureTask<>(new Callable<List<command_item>>() {
             @Override
             public List<command_item> call() throws Exception {
                 List<command_item> mData = new LinkedList<>();
-                int i = 1;
+                //Random r=new Random();
+                //int i = r.nextInt(5);
+                int i=mclass_id;
                 String sql1 = "SELECT order1.order_name,order1.order_price,order1.order_quantity "+
                 "FROM shop "+
                 "INNER JOIN class "+
@@ -65,8 +72,8 @@ public class left_list_fragment extends Fragment {
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     mData.add(new command_item(resultSet.getString(
-                            "order_name"),resultSet.getString("order_price"),
-                            resultSet.getString("order_quantity"),
+                            "order_name"),"单价"+resultSet.getString("order_price")+"元",
+                            "月销量"+resultSet.getString("order_quantity")+"份",
                             icons[i]));
                     i++;
                 }
@@ -85,5 +92,26 @@ public class left_list_fragment extends Fragment {
         } finally {
             return Data;
         }
+
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String order_name = crealist().get(i).getName();
+                String order_price = crealist().get(i).getPrice();
+                String order_quantity = crealist().get(i).getHot();
+                //int quantity = new get_StringNum(order_quantity).get();
+                int price = new get_StringNum(order_price).get();
+                Content.order_dishes=Content.order_dishes+order_name;
+                Content.order_quantity=Content.order_quantity+order_name+"1份 ";
+                Content.Allorder_price=Content.Allorder_price+price;
+                Toast.makeText(getActivity(),Content.order_quantity+"总计"+String.valueOf(Content.Allorder_price)
+                        +"元",Toast.LENGTH_LONG).show();
+                //Log.v("价格", String.valueOf(Content.Allorder_price));
+            }
+        });
     }
 }

@@ -42,7 +42,9 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
     // private  String[] names={"白斩鸡","地三鲜","剁椒鱼头","干锅土豆","酸菜鱼","梅菜扣肉"};
    // private String[]  price={"23","22","18","27","14","15"};
    // private String[]  hot={"156","234","121","54","34","20"};
-    private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou};
+    private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao,
+            R.mipmap.ganguotudou,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou,
+            R.mipmap.suancaiyu,R.mipmap.meicaikourou,R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao};
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +90,8 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                     ResultSet resultSet = JDBCUtils.query(sql1);
                     while (resultSet.next()) {
                         mData.add(new command_item(resultSet.getString(
-                                "shop_name"),"配送费5￥",
-                                resultSet.getString("shop_quantity"),
+                                "shop_name"),"配送费："+resultSet.getInt("shop_price")+"￥",
+                                "月销量"+resultSet.getInt("shop_quantity")+"份",
                                 icons[i]));
                         i++;
                     }
@@ -105,11 +107,11 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     String shop_name = mData.get(i).getName();
                     //Toast.makeText(Command.this,dishes_name,Toast.LENGTH_LONG).show();
-                    //Bundle bundle = new Bundle();
-                   // bundle.putString("shop_name", shop_name);
-
+                    Bundle bundle = new Bundle();
+                    bundle.putString("shop_name", shop_name);
+                    bundle.putInt("shop_id",i);
                     Intent intent = new Intent(Command.this,Order.class);
-                    //intent.putExtras(bundle);
+                    intent.putExtras(bundle);
                     //finish();
                     startActivity(intent);
                 }

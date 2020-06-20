@@ -39,9 +39,9 @@ public class CommandAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.command_list_item,parent,false);
             ImageView img_icon = (ImageView) convertView.findViewById(R.id.image);
-            TextView txt_name = (TextView) convertView.findViewById(R.id.tv_dishes_name);
-            TextView txt_price = (TextView) convertView.findViewById(R.id.tv_dishes_price);
-            TextView txt_hot = (TextView) convertView.findViewById(R.id.tv_dishes_hot);
+            TextView txt_name = (TextView) convertView.findViewById(R.id.name);
+            TextView txt_price = (TextView) convertView.findViewById(R.id.price);
+            TextView txt_hot = (TextView) convertView.findViewById(R.id.hot);
             img_icon.setBackgroundResource(mData.get(position).getIcon());
             txt_name.setText(mData.get(position).getName());
             txt_price.setText(mData.get(position).getPrice());
