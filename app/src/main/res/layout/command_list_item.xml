@@ -19,7 +19,7 @@
         >
 
         <TextView
-            android:id="@+id/tv_dishes_name"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -28,7 +28,7 @@
             />
 
         <TextView
-            android:id="@+id/tv_dishes_price"
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -38,7 +38,7 @@
             />
 
         <TextView
-            android:id="@+id/tv_dishes_hot"
+            android:id="@+id/hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
