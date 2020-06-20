@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFC107">
+
+    <LinearLayout
+        android:id="@+id/userinterfacelinearlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="148dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="129dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="108dp"
+                android:text="username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="156dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="80dp"
+                android:text="phonenumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="147dp"
+                android:layout_height="122dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="509dp"
+        android:orientation="vertical"
+        android:layout_below="@id/userinterfacelinearlayout1"
+        android:layout_marginTop="100dp">
+
+        <Button
+            android:id="@+id/addbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的地址" />
+
+        <Button
+            android:id="@+id/orderbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的订单" />
+
+        <Button
+            android:id="@+id/collectionbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的收藏" />
+
+        <Button
+            android:id="@+id/serverbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="投诉与建议" />
+
+    </LinearLayout>
+
+</RelativeLayout>
