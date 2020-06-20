@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UserInformationInterface"
+    tools:context=".K_UserInformationInterface"
     android:background="#FFC107">
 
     <LinearLayout
+        android:id="@+id/userinterfacelinearlayout1"
         android:layout_width="match_parent"
         android:layout_height="148dp">
 
@@ -53,60 +54,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="509dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/userinterfacelinearlayout1"
+        android:layout_marginTop="100dp">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/addbutton"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的地址" />
 
-        </LinearLayout>
-
-        <LinearLayout
+        <Button
+            android:id="@+id/orderbutton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的订单" />
 
-            <Button
-                android:id="@+id/addbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:text="我的地址" />
+        <Button
+            android:id="@+id/collectionbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="我的收藏" />
 
-            <Button
-                android:id="@+id/collectionbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:text="我的收藏" />
-
-            <Button
-                android:id="@+id/orderbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:text="我的订单" />
-
-            <Button
-                android:id="@+id/serverbutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:text="投诉与建议" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/serverbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:text="投诉与建议" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"/>
-
-</LinearLayout>
+</RelativeLayout>

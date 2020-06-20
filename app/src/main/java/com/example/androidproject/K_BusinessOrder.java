@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidproject.R;
-
 public class K_BusinessOrder extends AppCompatActivity {
     //订单类
 

@@ -1,15 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <ListView
+
+    <fragment
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview1"
-        android:divider="#C4C4C4"
-        android:dividerHeight="1dp">
-    </ListView>
-</LinearLayout>
+        android:name="com.example.androidproject.Recommend"/>
+
+        <RadioGroup
+            android:id="@+id/rg_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_white"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/main_find"
+                style="@style/tab_menu_item"
+                android:drawableTop="@drawable/tab_menu_better"
+                android:text="@string/tab_menu_alert" />
+
+            <RadioButton
+                android:id="@+id/main_message"
+                style="@style/tab_menu_item"
+                android:drawableTop="@drawable/tab_menu_channel"
+                android:text="@string/tab_menu_profile" />
+
+
+            <RadioButton
+                android:id="@+id/main_setting"
+                style="@style/tab_menu_item"
+                android:drawableTop="@drawable/tab_menu_setting"
+                android:text="@string/tab_menu_setting"/>
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/div_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_above="@id/rg_tab_bar"
+            android:background="@color/div_white" />
+
+
+
+
+</RelativeLayout>

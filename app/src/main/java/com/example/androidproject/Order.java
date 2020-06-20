@@ -1,13 +1,13 @@
 package com.example.androidproject;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class Order extends FragmentActivity implements AdapterView.OnItemClickListener {
     private String[] strs = { "热销", "优惠", "本店特色", "主食", "饮品酒水" };
@@ -48,8 +48,7 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
         fragmentTransaction.commit();
     }
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // TODO Auto-generated method stub
         //拿到当前位置
         mPosition = position;
