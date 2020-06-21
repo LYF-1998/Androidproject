@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Recommend"
+    android:background="@color/colorlayout"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <View
+            android:id="@+id/tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_above="@id/rg_tab_bar"
+            android:background="@color/div_white" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:background="#00000000"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/locationweather"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/wlocation"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#FFC107"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/weather"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="213dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:text="TextView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/command"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="推荐：" />
+
+            <TextView
+                android:id="@+id/command1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/command2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/command3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/command4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/command5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/scanner"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="21dp"
+                android:background="#00000000"
+                android:drawableTop="@android:drawable/ic_menu_camera"
+                android:text="扫一扫"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/code"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="21dp"
+                android:background="#00000000"
+                android:drawableTop="@android:drawable/ic_menu_gallery"
+                android:text="付款码"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/zanding1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="21dp"
+                android:background="#00000000"
+                android:drawableTop="@android:drawable/ic_menu_slideshow"
+                android:text="Button"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/zanding2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="21dp"
+                android:background="#00000000"
+                android:drawableTop="@android:drawable/ic_menu_send"
+                android:text="Button"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/command_list"
+            android:layout_width="match_parent"
+            android:layout_height="435dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="243dp"
+        android:layout_height="180dp"
         android:background="@android:color/background_light">
 
         <ImageView

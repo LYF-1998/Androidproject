@@ -1,17 +1,16 @@
 package com.example.androidproject;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +27,7 @@ import java.util.concurrent.FutureTask;
  * Use the {@link left_list_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class left_list_fragment extends Fragment {
+public class right_list_fragment extends Fragment {
     public static final String TAG = "MyFragment";
     private String str;
     private ListView listView;
@@ -40,12 +39,13 @@ public class left_list_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)  {
-        View view = inflater.inflate(R.layout.fragment_left_list_fragment, null);
+        View view = inflater.inflate(R.layout.fragment_right_list_fragment, null);
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
         str = getArguments().getString(TAG);
         tv_title.setText(str);
         mshop_id=getArguments().getInt("shop_id");
         mclass_id=getArguments().getInt("class_id");
+
         listView = (ListView)view.findViewById(R.id.right_list);
         List<command_item> Data=crealist();
         listView.setAdapter(new RightAdapter(getActivity(), Data));
@@ -89,24 +89,40 @@ public class left_list_fragment extends Fragment {
         } finally {
             return Data;
         }
-
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Button   order=(Button)getActivity().findViewById(R.id.order);
+        Button   confirm=(Button)getActivity().findViewById(R.id.confirm);
+        order.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        confirm.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String order_name = crealist().get(i).getName();
-                String order_price = crealist().get(i).getPrice();
-                String order_quantity = crealist().get(i).getHot();
+                //String order_name = crealist().get(i).getName();
+                //String order_price = crealist().get(i).getPrice();
+                //String order_quantity = crealist().get(i).getHot();
                 //int quantity = new get_StringNum(order_quantity).get();
-                int price = new get_StringNum(order_price).get();
-                Content.order_dishes=Content.order_dishes+order_name;
-                Content.order_quantity=Content.order_quantity+order_name+"1份 ";
-                Content.Allorder_price=Content.Allorder_price+price;
-                Toast.makeText(getActivity(),Content.order_quantity+"总计"+String.valueOf(Content.Allorder_price)
-                        +"元",Toast.LENGTH_LONG).show();
+                //int price = new get_StringNum(order_price).get();
+                //Content.order_dishes=Content.order_dishes+order_name;
+                //Content.order_dishes[i]=order_name;
+                //Content.order_quantity=Content.order_quantity+order_name+"1份 ";
+               // Content.Allorder_price=Content.Allorder_price+price;
+               // Toast.makeText(getActivity(),Content.order_quantity+"总计"+String.valueOf(Content.Allorder_price)
+                //        +"元",Toast.LENGTH_LONG).show();
                 //Log.v("价格", String.valueOf(Content.Allorder_price));
             }
         });

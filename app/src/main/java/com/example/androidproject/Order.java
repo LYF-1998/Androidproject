@@ -1,19 +1,19 @@
 package com.example.androidproject;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 public class Order extends FragmentActivity implements AdapterView.OnItemClickListener {
     private String[] strs = { "热销", "优惠", "本店特色", "主食", "饮品酒水" };
     private ListView listView;
     private LeftAdapter adapter;
-    private left_list_fragment myFragment;
+    private right_list_fragment myFragment;
     public static int mPosition;
     private int shop_id;
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         //创建MyFragment对象
-        myFragment = new left_list_fragment();
+        myFragment = new right_list_fragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, myFragment);
@@ -48,20 +48,19 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
         fragmentTransaction.commit();
     }
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // TODO Auto-generated method stub
         //拿到当前位置
         mPosition = position;
         //即使刷新adapter
         adapter.notifyDataSetChanged();
        for (int i = 0; i < strs.length; i++) {
-            myFragment = new left_list_fragment();
+            myFragment = new right_list_fragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, myFragment);
             Bundle bundle1 = new Bundle();
-            bundle1.putString(left_list_fragment.TAG, strs[position]);
+            bundle1.putString(right_list_fragment.TAG, strs[position]);
             //bundle.putInt("shop_id", shop_id);
             //bundle.putInt("class_id",mPosition);
            bundle1.putInt("class_id",mPosition);

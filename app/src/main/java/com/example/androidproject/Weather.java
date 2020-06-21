@@ -5,12 +5,12 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import interfaces.heweather.com.interfacesmodule.bean.weather.now.Now;
 import interfaces.heweather.com.interfacesmodule.view.HeConfig;
