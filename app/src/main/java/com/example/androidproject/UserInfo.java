@@ -1,7 +1,7 @@
 package com.example.androidproject;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class UserInfo {
     private static UserInfo instance;
@@ -16,5 +16,12 @@ public class UserInfo {
         }
         return instance;
     }
-    List<String> list = new LinkedList();
+
+    public String username;
+    public String phone;
+    public String address;
+    public Map<String,String> dishesname;
+    public List<String> dishs;
+    public String dishes;
+
 }

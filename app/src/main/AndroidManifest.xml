@@ -36,7 +36,7 @@
         <activity android:name=".K_UserInformationInterface"/>
         <activity android:name=".K_BusinessOrder"/>
         <activity android:name=".K_Address"/>
-        <activity android:name=".K_Collection"/>
+        <activity android:name=".K_AboutUs"/>
         <activity android:name=".K_Server"/>
         <activity android:name=".MainActivity">
             <intent-filter>
