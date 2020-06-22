@@ -11,13 +11,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +52,7 @@ public class Setting extends Fragment {
 //        } catch (ExecutionException | InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        List<String> list = instance.list;
+        List<String> list = instance.dishs;
         //Toast.makeText(this,String.valueOf(list == null),Toast.LENGTH_LONG).show();
         Log.i("+++++++++++++++++++",list.toString());
         username.setText(list.get(0));
@@ -85,7 +79,7 @@ public class Setting extends Fragment {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(UserInformationInterface.this,"button3",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), K_Collection.class);
+                Intent intent = new Intent(getActivity(), K_AboutUs.class);
                 startActivity(intent);
             }
         });

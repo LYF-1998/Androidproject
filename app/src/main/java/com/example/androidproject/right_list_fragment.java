@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -49,6 +51,7 @@ public class right_list_fragment extends Fragment {
         listView = (ListView)view.findViewById(R.id.right_list);
         List<command_item> Data=crealist();
         listView.setAdapter(new RightAdapter(getActivity(), Data));
+
         return view;
     }
     private List<command_item> crealist(){
@@ -106,12 +109,26 @@ public class right_list_fragment extends Fragment {
         {
             @Override
             public void onClick(View v) {
+                int i =listView.getLastVisiblePosition()-listView.getFirstVisiblePosition();
+                for(int j=0;j<=i;j++) {
+                    EditText ed = listView.getChildAt(j).findViewById(R.id.quantity);
+                    String a = ed.getText().toString();
+                    String order_name = crealist().get(j).getName();
+                    String order_price = crealist().get(j).getPrice();
+                    int price = new get_StringNum(order_price).get();
+                    Content.order_dishes=Content.order_dishes+order_name+a;
+                    Content.Allorder_price=Content.Allorder_price+price;
+                    
+                }
+                Toast.makeText(getActivity(),Content.order_dishes+"总计"+String.valueOf(Content.Allorder_price)
+                                +"元",Toast.LENGTH_LONG).show();
             }
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 //String order_name = crealist().get(i).getName();
                 //String order_price = crealist().get(i).getPrice();
                 //String order_quantity = crealist().get(i).getHot();
@@ -127,4 +144,5 @@ public class right_list_fragment extends Fragment {
             }
         });
     }
+
 }

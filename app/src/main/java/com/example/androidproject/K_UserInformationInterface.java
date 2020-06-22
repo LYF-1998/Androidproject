@@ -86,7 +86,7 @@ public class K_UserInformationInterface extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(UserInformationInterface.this,"button3",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(K_UserInformationInterface.this, K_Collection.class);
+                Intent intent = new Intent(K_UserInformationInterface.this, K_Server.class);
                 startActivity(intent);
             }
         });
@@ -94,7 +94,7 @@ public class K_UserInformationInterface extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(UserInformationInterface.this,"button4",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(K_UserInformationInterface.this, K_Server.class);
+                Intent intent = new Intent(K_UserInformationInterface.this, K_AboutUs.class);
                 startActivity(intent);
             }
         });
