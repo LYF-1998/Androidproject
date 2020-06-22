@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 try {
                     if(resultSet.next()) {
-                        Intent intent = new Intent(Login.this, Command.class);
+                        Intent intent = new Intent(Login.this, MainActivity.class);
                         intent.putExtra("u_username",u_username.getText().toString());
                         startActivity(intent);
 
