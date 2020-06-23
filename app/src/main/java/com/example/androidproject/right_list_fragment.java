@@ -62,7 +62,7 @@ public class right_list_fragment extends Fragment {
                 //Random r=new Random();
                 //int i = r.nextInt(5);
                 int i=mclass_id;
-                String sql1 = "SELECT order1.order_name,order1.order_price,order1.order_quantity "+
+                String sql1 = "SELECT order1.order_name,order1.order_price,order1.order_quantity,order1.order_picture "+
                 "FROM shop "+
                 "INNER JOIN class "+
                 "ON shop.shop_id=class.shop_id "+
@@ -71,11 +71,13 @@ public class right_list_fragment extends Fragment {
                 "WHERE class_id='"+mclass_id+"' and shop.shop_id='"+mshop_id+"'";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
+                    String p=resultSet.getString("order_picture");
+                    int id = getResources().getIdentifier(p,"mipmap", "com.example.androidproject");
                     mData.add(new command_item(resultSet.getString(
                             "order_name"),"单价"+resultSet.getString("order_price")+"元",
-                            "月销量"+resultSet.getString("order_quantity")+"份",
-                            icons[i]));
-                    i++;
+                            "月销量"+resultSet.getInt("order_quantity")+"份",
+                            id));
+                    //i++;
                 }
                 return mData;
 
@@ -118,7 +120,7 @@ public class right_list_fragment extends Fragment {
                     int price = new get_StringNum(order_price).get();
                     Content.order_dishes=Content.order_dishes+order_name+a;
                     Content.Allorder_price=Content.Allorder_price+price;
-                    
+
                 }
                 Toast.makeText(getActivity(),Content.order_dishes+"总计"+String.valueOf(Content.Allorder_price)
                                 +"元",Toast.LENGTH_LONG).show();
