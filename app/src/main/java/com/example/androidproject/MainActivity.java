@@ -2,29 +2,22 @@ package com.example.androidproject;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 public  class MainActivity extends AppCompatActivity {
-    private RadioButton radioButton1;
-    private RadioButton radioButton2;
-    private RadioButton radioButton3;
-    public static String name = "test";
+    UserInfo instance = UserInfo.getInstance();
+    public String name = "test1";
     Recommend recommend;
     Setting setting;
 
@@ -32,6 +25,8 @@ public  class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        instance.username = this.name;
+
 
         recommend = new Recommend();
         setting = new Setting();
@@ -43,7 +38,7 @@ public  class MainActivity extends AppCompatActivity {
         future = new FutureTask<>(new Callable<List<String>>() {
             @Override
             public List<String> call() throws SQLException {
-                List<String> list = new LinkedList();
+                LinkedList<String> list = new LinkedList();
 
                 String sql = "select phone from user where username = '" + name + "';";
                 ResultSet resultSet = JDBCUtils.query(sql);
@@ -52,23 +47,24 @@ public  class MainActivity extends AppCompatActivity {
                 list.add(name);
                 list.add(number);
                 JDBCUtils.close();
+
                 return list;
             }
         });
         new Thread(future).start();
+
         try {
-            instance.list.addAll(future.get());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            instance.dishs.addAll(future.get());
+
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
 
         setContentView(R.layout.activity_main);
-        radioButton1 = findViewById(R.id.main_find);
-        radioButton2 = findViewById(R.id.main_message);
-        radioButton3 = findViewById(R.id.main_setting);
+        RadioButton radioButton1 = findViewById(R.id.main_find);
+        RadioButton radioButton2 = findViewById(R.id.main_message);
+        RadioButton radioButton3 = findViewById(R.id.main_setting);
         radioButton1.setOnClickListener(onClickListener);
         radioButton2.setOnClickListener(onClickListener);
         radioButton3.setOnClickListener(onClickListener);

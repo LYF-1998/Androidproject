@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Order"></activity>
+        <activity android:name=".Set"/>
         <activity android:name=".Register" />
         <activity android:name=".Location" />
 
@@ -32,15 +32,20 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".Command">
+        <activity android:name=".Command" />
+        <activity android:name=".Order" />
+        <activity android:name=".K_UserInformationInterface" />
+        <activity android:name=".K_BusinessOrder" />
+        <activity android:name=".K_Address" />
+        <activity android:name=".K_AboutUs" />
+        <activity android:name=".K_Server" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -128,5 +128,4 @@ public class RightAdapter extends BaseAdapter {
         });
         return convertView;
     }
-
 }
