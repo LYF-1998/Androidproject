@@ -46,9 +46,8 @@ public class Setting extends Fragment {
         username = getActivity().findViewById(R.id.username);
         number = getActivity().findViewById(R.id.number);
         imageView = getActivity().findViewById(R.id.setting_set);
-        List<String> list = instance.dishs;
-        username.setText(list.get(0));
-        number.setText(list.get(1));
+        username.setText(instance.username);
+        number.setText(instance.phone);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

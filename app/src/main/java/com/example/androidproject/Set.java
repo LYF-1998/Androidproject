@@ -14,7 +14,6 @@ import java.util.concurrent.FutureTask;
 
 public class Set extends AppCompatActivity {
     private EditText phone,address;
-    private Button commit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class Set extends AppCompatActivity {
         final UserInfo instance = UserInfo.getInstance();
         phone = findViewById(R.id.set_numberedit);
         address = findViewById(R.id.set_addressedit);
-        commit = findViewById(R.id.set_commit);
+        Button commit = findViewById(R.id.set_commit);
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,9 +46,9 @@ public class Set extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 if (status == 0){
-                    Toast.makeText(Set.this,"更新失败，请检查网络并稍后再试",Toast.LENGTH_SHORT);
+                    Toast.makeText(Set.this,"更新失败，请检查网络并稍后再试",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(Set.this,"更新个人信息成功！！！",Toast.LENGTH_SHORT);
+                    Toast.makeText(Set.this,"更新个人信息成功！！！",Toast.LENGTH_SHORT).show();
                 }
                 phone.setText("");
                 address.setText("");
