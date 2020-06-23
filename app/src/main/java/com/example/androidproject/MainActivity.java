@@ -1,10 +1,12 @@
 package com.example.androidproject;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +26,7 @@ public  class MainActivity extends AppCompatActivity {
     private RadioButton radioButton1;
     private RadioButton radioButton2;
     private RadioButton radioButton3;
-    public static String name = "test";
+    public static String name = "";
     Recommend recommend;
     Setting setting;
 
@@ -37,32 +39,7 @@ public  class MainActivity extends AppCompatActivity {
         setting = new Setting();
         UserInfo instance = UserInfo.getInstance();
         //final ArrayList<String> list = new ArrayList<>();
-        FutureTask<List<String>> future;
 
-
-        future = new FutureTask<>(new Callable<List<String>>() {
-            @Override
-            public List<String> call() throws SQLException {
-                List<String> list = new LinkedList();
-
-                String sql = "select phone from user where username = '" + name + "';";
-                ResultSet resultSet = JDBCUtils.query(sql);
-                resultSet.next();
-                String number = resultSet.getString("phone");
-                list.add(name);
-                list.add(number);
-                JDBCUtils.close();
-                return list;
-            }
-        });
-        new Thread(future).start();
-        try {
-            instance.list.addAll(future.get());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
         setContentView(R.layout.activity_main);

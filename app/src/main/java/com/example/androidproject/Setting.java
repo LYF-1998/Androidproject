@@ -54,7 +54,7 @@ public class Setting extends Fragment {
 //        }
         List<String> list = instance.dishs;
         //Toast.makeText(this,String.valueOf(list == null),Toast.LENGTH_LONG).show();
-        Log.i("+++++++++++++++++++",list.toString());
+       // Log.i("+++++++++++++++++++",list.toString());
         username.setText(list.get(0));
         number.setText(list.get(1));
         button1.setOnClickListener(new View.OnClickListener() {
