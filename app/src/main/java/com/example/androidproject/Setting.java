@@ -2,11 +2,11 @@ package com.example.androidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -21,11 +21,9 @@ import java.util.List;
 public class Setting extends Fragment {
     Button button1,button2,button3,button4;
     TextView username,number;
-//    ArrayList<String> list = new ArrayList<>();
+    ImageView imageView;
     UserInfo instance = UserInfo.getInstance();
-//    List<String> list = instance.list;
-//    FutureTask<List<String>> future;
-//    public static String name = "test";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,16 +45,9 @@ public class Setting extends Fragment {
         button4 = getActivity().findViewById(R.id.serverbutton);
         username = getActivity().findViewById(R.id.username);
         number = getActivity().findViewById(R.id.number);
-//        try {
-//            list = future.get();
-//        } catch (ExecutionException | InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        List<String> list = instance.dishs;
-        //Toast.makeText(this,String.valueOf(list == null),Toast.LENGTH_LONG).show();
-       // Log.i("+++++++++++++++++++",list.toString());
-        username.setText(list.get(0));
-        number.setText(list.get(1));
+        imageView = getActivity().findViewById(R.id.setting_set);
+        username.setText(instance.username);
+        number.setText(instance.phone);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +79,13 @@ public class Setting extends Fragment {
             public void onClick(View v) {
                 //Toast.makeText(UserInformationInterface.this,"button4",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), K_Server.class);
+                startActivity(intent);
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Set.class);
                 startActivity(intent);
             }
         });

@@ -1,42 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".K_UserInformationInterface"
     android:background="@drawable/bluecolor"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/userinterfacelinearlayout1"
         android:layout_width="match_parent"
         android:layout_height="148dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="129dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="108dp"
-                android:text="username"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/number"
-                android:layout_width="156dp"
-                android:layout_height="27dp"
-                android:layout_marginTop="96dp"
-                android:layout_marginEnd="80dp"
-                android:text="phonenumber"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -47,16 +25,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/headimage" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="129dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginLeft="200dp"
+                android:text="username"
+                 />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="156dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginLeft="200dp"
+                android:text="phonenumber" />
+
+            <ImageView
+                android:id="@+id/setting_set"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/settingicon"
+                />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="509dp"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:layout_below="@id/userinterfacelinearlayout1"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/addbutton"
@@ -93,4 +99,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

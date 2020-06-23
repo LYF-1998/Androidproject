@@ -30,7 +30,7 @@ public class Command extends AppCompatActivity implements View.OnClickListener {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_command);
+//            setContentView(R.layout.activity_command);
 //            bindViews();
 //            try {
 //                creatList();

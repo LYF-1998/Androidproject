@@ -12,6 +12,7 @@ public class K_AboutUs extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
         button = findViewById(R.id.about_button1);
