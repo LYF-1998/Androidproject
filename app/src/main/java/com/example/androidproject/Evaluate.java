@@ -66,7 +66,7 @@ public class Evaluate extends AppCompatActivity {
 */
 
 
-    public class getSong{
+    public  List<Evaluate_item> getSong(){
         FutureTask<List<Evaluate_item>> futureTask = new FutureTask<>(new Callable<List<Evaluate_item>>() {
             @Override
             public List<Evaluate_item> call() throws Exception {
@@ -81,18 +81,24 @@ public class Evaluate extends AppCompatActivity {
                 JDBCUtils.close();
                 return ldate;
             }
-        });
+        }
+        );
         new Thread(futureTask).start();
         //new Thread(futureTask).start();
-        final List<Evaluate_item> mData = futureTask.get();
-
-
+        List<Evaluate_item> date = null;
+        try {
+             date = futureTask.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
         // textview.setText(lists.get(1).get(0));
         class MyListDateAdpter extends BaseAdapter{
         //    private LinkedList<command_item> mData;
-            private LinkedList<Evaluate_item> lists;
-         //   <List<Evaluate_item>> lists = getSong();
+           List<Evaluate_item> lists = getSong();
             public int getCount() {
                 return lists.size();
             }
@@ -120,7 +126,7 @@ public class Evaluate extends AppCompatActivity {
                 }else{
                     holder = (MyViewHolder) convertView.getTag();
                 }
-                List<List<String>> lists = getSong();
+               // List<List<String>> lists = getSong();
              //   holder.tv1.setText(lists.get(0).get(0));
                // holder.tv2.setText(lists.get(0).get(1));
 
