@@ -1,31 +1,13 @@
 package com.example.androidproject;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 
 public  class MainActivity extends AppCompatActivity {
-    private RadioButton radioButton1;
-    private RadioButton radioButton2;
-    private RadioButton radioButton3;
     public static String name = "";
     Recommend recommend;
     Setting setting;
@@ -40,12 +22,10 @@ public  class MainActivity extends AppCompatActivity {
         UserInfo instance = UserInfo.getInstance();
         //final ArrayList<String> list = new ArrayList<>();
 
-
-
         setContentView(R.layout.activity_main);
-        radioButton1 = findViewById(R.id.main_find);
-        radioButton2 = findViewById(R.id.main_message);
-        radioButton3 = findViewById(R.id.main_setting);
+        RadioButton radioButton1 = findViewById(R.id.main_find);
+        RadioButton radioButton2 = findViewById(R.id.main_message);
+        RadioButton radioButton3 = findViewById(R.id.main_setting);
         radioButton1.setOnClickListener(onClickListener);
         radioButton2.setOnClickListener(onClickListener);
         radioButton3.setOnClickListener(onClickListener);
