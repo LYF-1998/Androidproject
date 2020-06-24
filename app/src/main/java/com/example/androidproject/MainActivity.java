@@ -26,7 +26,7 @@ public  class MainActivity extends AppCompatActivity {
     private RadioButton radioButton1;
     private RadioButton radioButton2;
     private RadioButton radioButton3;
-    public static String name = "";
+    //public static String name = "";
     Recommend recommend;
     Setting setting;
 
@@ -38,6 +38,9 @@ public  class MainActivity extends AppCompatActivity {
         recommend = new Recommend();
         setting = new Setting();
         UserInfo instance = UserInfo.getInstance();
+        Intent intent = getIntent();
+        String u_username = intent.getStringExtra("u_username");
+        instance.setUsername(u_username);
         //final ArrayList<String> list = new ArrayList<>();
 
 

@@ -2,11 +2,18 @@ package com.example.androidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.xml.transform.Result;
 
 public class Register extends AppCompatActivity implements View.OnClickListener{
     private EditText u_username;
@@ -39,13 +46,27 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        String sql = "select * where username='"+u_username+"'";
                         String sql1 = "INSERT INTO user(username,password) VALUES('"+u_username.getText().toString()+"','"+u_password.getText().toString()+"')";
+                        ResultSet resultSet=JDBCUtils.query(sql);
+                        /*try {
+                            if(resultSet.next()){
+                                Looper.prepare();
+                                Toast.makeText(Register.this, "该用户名已存在！", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }else{
+                                JDBCUtils.update(sql1);
+                                Intent intent1=new Intent(Register.this,Login.class);
+                                startActivity(intent1);
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }*/
                         JDBCUtils.update(sql1);
                         JDBCUtils.close();
                     }
                 }).start();
-                Intent intent1=new Intent(Register.this,Login.class);
-                startActivity(intent1);
+
                 break;
         }
     }

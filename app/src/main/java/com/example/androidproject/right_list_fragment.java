@@ -1,6 +1,8 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -104,7 +109,21 @@ public class right_list_fragment extends Fragment {
         {
             @Override
             public void onClick(View v) {
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                        Date date = new Date(System.currentTimeMillis());
+                        String time=simpleDateFormat.format(date);
+                        UserInfo userinfo =UserInfo.getInstance();
+                        String sql = "INSERT INTO dishes(username,time,ds,price) VALUES('"+userinfo.getUsername()+"','"+time+"','"+Content.order_dishes+"','"+Content.Allorder_price+"')";
+                        JDBCUtils.update(sql);
+                        //Intent intent=new Intent(getActivity(),);
+                        //startActivity(intent);
+                        JDBCUtils.close();
+                    }
+                }).start();
+                Toast.makeText(getActivity(), "下单成功！", Toast.LENGTH_SHORT).show();
             }
         });
         confirm.setOnClickListener(new View.OnClickListener()
@@ -115,12 +134,25 @@ public class right_list_fragment extends Fragment {
                 for(int j=0;j<=i;j++) {
                     EditText ed = listView.getChildAt(j).findViewById(R.id.quantity);
                     String a = ed.getText().toString();
-                    String order_name = crealist().get(j).getName();
+                    final int b=Integer.parseInt(a);
+                    final String order_name = crealist().get(j).getName();
                     String order_price = crealist().get(j).getPrice();
                     int price = new get_StringNum(order_price).get();
                     Content.order_dishes=Content.order_dishes+order_name+a;
                     Content.Allorder_price=Content.Allorder_price+price;
 
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int num = get_order_quantity(order_name);
+                            Log.v("num:",String.valueOf(num));
+                            int sum=num+b;
+                            String sql1 = "update order1 set order_quantity='"+sum+"' where order_name='"+order_name+"'";
+                            JDBCUtils.update(sql1);
+
+                            JDBCUtils.close();
+                        }
+                    }).start();
                 }
                 Toast.makeText(getActivity(),Content.order_dishes+"总计"+String.valueOf(Content.Allorder_price)
                                 +"元",Toast.LENGTH_LONG).show();
@@ -145,6 +177,21 @@ public class right_list_fragment extends Fragment {
                 //Log.v("价格", String.valueOf(Content.Allorder_price));
             }
         });
+    }
+    private int get_order_quantity(String order_name){
+        int num=0;
+        String sql  = "select order1.order_quantity from order1 where order_name='"+order_name+"'";
+        ResultSet resultSet=JDBCUtils.query(sql);
+        try {
+            resultSet.next();
+            num=resultSet.getInt("order_quantity");
+            //Log.v("num1:",String.valueOf(num));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return num;
+        }
+
     }
 
 }
