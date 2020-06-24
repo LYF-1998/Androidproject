@@ -71,7 +71,7 @@ public class Evaluate extends AppCompatActivity {
             public List<Evaluate_item> call() throws Exception {
                 List<Evaluate_item> ldate = new LinkedList<>();
                 int i = 1;
-                String sql1 = "select * from evaluate";
+                String sql1 = "select * from evaluate where business='鸡公煲' ";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     ldate.add(new Evaluate_item(resultSet.getString("user"),resultSet.getString("evaluate") ));
