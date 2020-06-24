@@ -136,5 +136,3 @@ public class Evaluate extends AppCompatActivity {
             }
         }
     }
-
-
