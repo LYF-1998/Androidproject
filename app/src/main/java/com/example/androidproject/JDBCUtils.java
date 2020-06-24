@@ -60,7 +60,7 @@ public class JDBCUtils {
 //        ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://121.199.39.117:3306/demo1?characterEncoding=utf-8", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://121.199.39.117:3306/demo1?characterEncoding=utf-8&useSSL=false", "root", "root");
             statement = connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class JDBCUtils {
     public static int update(String sql){
         int update = 0;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://121.199.39.117:3306/demo1?characterEncoding=utf-8", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://121.199.39.117:3306/demo1?characterEncoding=utf-8&useSSL=false", "root", "root");
             statement = connection.createStatement();
             update = statement.executeUpdate(sql);
         } catch (SQLException throwables) {

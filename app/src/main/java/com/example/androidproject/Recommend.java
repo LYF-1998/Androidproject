@@ -3,15 +3,18 @@ package com.example.androidproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -21,8 +24,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -40,11 +47,14 @@ public class Recommend extends Fragment implements View.OnClickListener{
     private Button location;
     private Button scanner;
     private Button code;
+    private Button search_confirm;
+    private EditText search;
     private TextView weather;
     private TextView command1;
     private TextView command2;
     private TextView command3;
     private TextView command4;
+    private TextView command5;
     private TextView tv_wether, tv_location, tv_temperature;
     // private List<command_item> mData = null;
     private Context mContext;
@@ -114,13 +124,19 @@ public class Recommend extends Fragment implements View.OnClickListener{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Intent intent = getActivity().getIntent();
-        String u_username = intent.getStringExtra("u_username");
-        Toast.makeText(getActivity(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
+        List<String> command_list = select();
+        command1.setText(command_list.get(0));
+        command2.setText(command_list.get(1));
+        command3.setText(command_list.get(2));
+        command4.setText(command_list.get(3));
+        command5.setText(command_list.get(4));
         HeConfig.init("HE2006012053341638", "9ba0db84d7f04b0abbcf5eabcba662b8");
         //个人开发者需要切换到免费服务域名，默认使用中国付费节点服务域名会报错
         HeConfig.switchToFreeServerNode();
         getWether();
+        Intent intent = getActivity().getIntent();
+        String u_username = intent.getStringExtra("u_username");
+        Toast.makeText(getActivity(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -137,8 +153,16 @@ public class Recommend extends Fragment implements View.OnClickListener{
         scanner.setOnClickListener(this);
         code = getActivity().findViewById(R.id.code);
         code.setOnClickListener(this);
+        search_confirm=getActivity().findViewById(R.id.search_confirm);
+        search_confirm.setOnClickListener(this);
+        search=getActivity().findViewById(R.id.search);
         location.setText(Content.Location);
         weather = getActivity().findViewById(R.id.weather);
+        command1=getActivity().findViewById(R.id.command1);
+        command2=getActivity().findViewById(R.id.command2);
+        command3=getActivity().findViewById(R.id.command3);
+        command4=getActivity().findViewById(R.id.command4);
+        command5=getActivity().findViewById(R.id.command5);
     }
 
     private void creatList() throws ExecutionException, InterruptedException {
@@ -159,6 +183,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
                             icons[i]));
                     i++;
                 }
+
                 return mData;
             }
         });
@@ -180,6 +205,32 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+    }
+    private List<String> select(){
+        final FutureTask<List<String>> futureTask = new FutureTask<>(new Callable<List<String>>() {
+            @Override
+            public List<String> call() throws Exception {
+                List<String> mData = new LinkedList<>();
+                String sql = "select * from (select * from order1 order by order_quantity DESC )a limit 5";
+                ResultSet resultSet = JDBCUtils.query(sql);
+                while (resultSet.next()) {
+                    mData.add(resultSet.getString("order_name"));
+                }
+                return mData;
+
+            }
+        });
+        new Thread(futureTask).start();
+        List<String> Data = null;
+        try {
+            Data = futureTask.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            return Data;
+        }
     }
     private void getWether() {
         HeWeather.getWeatherNow(getActivity(), new HeWeather.OnResultWeatherNowBeanListener() {
@@ -234,14 +285,10 @@ public class Recommend extends Fragment implements View.OnClickListener{
             case R.id.code:
 
                 break;
-            case R.id.command1:
-
-                break;
-            case R.id.command2:
-
-                break;
-            case R.id.command3:
-
+            case R.id.search_confirm:
+                 Intent intent1=new Intent(getActivity(),search.class);
+                 intent1.putExtra("search_text",search.getText().toString());
+                 startActivity(intent1);
                 break;
         }
     }

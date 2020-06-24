@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Recommend"
     android:background="@color/colorlayout"
     android:orientation="vertical">
@@ -54,13 +53,20 @@
                     android:text="TextView" />
             </LinearLayout>
 
-            <TextView
+            <EditText
                 android:id="@+id/search"
                 android:layout_width="213dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
-                android:text="TextView" />
+                android:hint="搜索"/>
+
+            <Button
+                android:id="@+id/search_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:text="Button" />
 
         </LinearLayout>
 
