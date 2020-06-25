@@ -275,6 +275,8 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.scanner:
+                Intent intent_scanner = new Intent(getActivity(),scanner.class);
+                startActivity(intent_scanner);
                 break;
             case R.id.code:
 
