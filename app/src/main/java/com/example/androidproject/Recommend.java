@@ -193,7 +193,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 Bundle bundle = new Bundle();
                 bundle.putString("shop_name", shop_name);
                 bundle.putInt("shop_id",i);
-                Intent intent = new Intent(getActivity(),Order.class);
+                Intent intent = new Intent(getActivity(),OrderActivity.class);
                 intent.putExtras(bundle);
                 //finish();
                 startActivity(intent);

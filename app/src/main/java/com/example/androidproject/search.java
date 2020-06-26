@@ -81,7 +81,7 @@ public class search extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("shop_name", shop_name);
                 bundle.putInt("shop_id",mshop_id);
-                Intent intent = new Intent(search.this,Order.class);
+                Intent intent = new Intent(search.this,OrderActivity.class);
                 intent.putExtras(bundle);
                 //finish();
                 startActivity(intent);
