@@ -24,6 +24,7 @@ public class UserInfo {
     public Map<String,String> dishesname;
     public List<String> dishs = new ArrayList<>();
     public String dishes;
+    public String shopname;
 
 
     public String getUsername() {
@@ -33,7 +34,8 @@ public class UserInfo {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    public String getShopname(){return  shopname;}
+    public void setShopname(String shopname){this.shopname=shopname;}
     public String getPhone() {
         return phone;
     }

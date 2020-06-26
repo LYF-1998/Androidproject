@@ -33,9 +33,9 @@ public class OrderFragment extends Fragment implements AdapterView.OnItemClickLi
         View view = inflater.inflate(R.layout.fragment_order, null);
         TextView name=(TextView)getActivity().findViewById(R.id.shop_name);
         //获取Bundle的信息
-        String info=getArguments().getString("shop_name");
+       String info=getArguments().getString("shop_name");
         shop_id=getArguments().getInt("shop_id");
-        name.setText(info);
+        name.setHint(info);
         listView = (ListView) view.findViewById(R.id.left_list);
         adapter = new LeftAdapter(getActivity(), strs);
         listView.setAdapter(adapter);

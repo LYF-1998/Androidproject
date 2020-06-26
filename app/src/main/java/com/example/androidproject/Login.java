@@ -47,7 +47,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 try {
                     if(resultSet.next()) {
                         Intent intent = new Intent(Login.this, MainActivity.class);
-                        intent.putExtra("u_username",u_username.getText().toString());
+                        //intent.putExtra("u_username",u_username.getText().toString());
+                        UserInfo instance = UserInfo.getInstance();
+                        instance.setUsername(u_username.getText().toString());
                         startActivity(intent);
 
                         // Toast.makeText(getApplicationContext(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();

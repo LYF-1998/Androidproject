@@ -116,7 +116,7 @@ public class right_list_fragment extends Fragment {
                         Date date = new Date(System.currentTimeMillis());
                         String time=simpleDateFormat.format(date);
                         UserInfo userinfo =UserInfo.getInstance();
-                        String sql = "INSERT INTO dishes(username,time,ds,price) VALUES('"+userinfo.getUsername()+"','"+time+"','"+Content.order_dishes+"','"+Content.Allorder_price+"')";
+                        String sql = "INSERT INTO dishes(username,shopname,time,ds,price) VALUES('"+userinfo.getUsername()+"','"+userinfo.getShopname()+"','"+time+"','"+Content.order_dishes+"','"+Content.Allorder_price+"')";
                         JDBCUtils.update(sql);
                         //Intent intent=new Intent(getActivity(),);
                         //startActivity(intent);
