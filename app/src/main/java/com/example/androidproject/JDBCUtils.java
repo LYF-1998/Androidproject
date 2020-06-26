@@ -83,6 +83,8 @@ public class JDBCUtils {
             update = statement.executeUpdate(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            JDBCUtils.close();
         }
 
         return update;
