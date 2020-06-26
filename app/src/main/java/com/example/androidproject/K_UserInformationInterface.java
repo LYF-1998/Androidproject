@@ -21,12 +21,15 @@ public class K_UserInformationInterface extends AppCompatActivity {
     TextView username,number;
     ArrayList<String> list = new ArrayList<>();
     FutureTask<List<String>> future;
-    public static String name = "test";
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinformationinterface);
+
+        UserInfo instance = UserInfo.getInstance();
+        name = instance.getUsername();
 
         future = new FutureTask<>(new Callable<List<String>>() {
             @Override
