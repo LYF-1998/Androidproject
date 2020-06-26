@@ -46,14 +46,13 @@ public  class MainActivity extends AppCompatActivity {
 
                     break;
                 case R.id.main_setting:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment,new Setting()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment,setting).commit();
 //                    fragmentTransaction.commit();
 //                    fragmentTransaction.add(recommend,null).hide(recommend).show(setting).commit();
                     break;
                 default:
                     break;
             }
-
         }
     };
 }

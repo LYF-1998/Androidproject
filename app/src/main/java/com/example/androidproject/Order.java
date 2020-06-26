@@ -3,6 +3,7 @@ package com.example.androidproject;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,10 +17,13 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
     private right_list_fragment myFragment;
     public static int mPosition;
     private int shop_id;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         initView();
+
+
     }
     /**
      * 初始化view
@@ -68,4 +72,5 @@ public class Order extends FragmentActivity implements AdapterView.OnItemClickLi
             fragmentTransaction.commit();
         }
     }
+
 }
