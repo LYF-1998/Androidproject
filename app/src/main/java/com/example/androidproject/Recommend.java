@@ -128,8 +128,8 @@ public class Recommend extends Fragment implements View.OnClickListener{
         //个人开发者需要切换到免费服务域名，默认使用中国付费节点服务域名会报错
         HeConfig.switchToFreeServerNode();
         getWether();
-        Intent intent = getActivity().getIntent();
-        String u_username = intent.getStringExtra("u_username");
+        UserInfo instance = UserInfo.getInstance();
+        String u_username =instance.getUsername();
         Toast.makeText(getActivity(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
     }
 
@@ -190,6 +190,8 @@ public class Recommend extends Fragment implements View.OnClickListener{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String shop_name = mData.get(i).getName();
                 //Toast.makeText(Command.this,dishes_name,Toast.LENGTH_LONG).show();
+                UserInfo instance = UserInfo.getInstance();
+                instance.setShopname(shop_name);
                 Bundle bundle = new Bundle();
                 bundle.putString("shop_name", shop_name);
                 bundle.putInt("shop_id",i);

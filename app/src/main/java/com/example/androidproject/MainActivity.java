@@ -19,7 +19,6 @@ public  class MainActivity extends AppCompatActivity {
 
         recommend = new Recommend();
         setting = new Setting();
-        UserInfo instance = UserInfo.getInstance();
         //final ArrayList<String> list = new ArrayList<>();
 
         setContentView(R.layout.activity_main);
