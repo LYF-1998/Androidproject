@@ -53,11 +53,10 @@
             android:text="特色"/>
     </LinearLayout>
 
-    <fragment
+    <FrameLayout
         android:id="@+id/order_fragment"
         android:layout_width="match_parent"
         android:layout_height="502dp">
-
-    </fragment>
+   </FrameLayout>
 
 </LinearLayout>
