@@ -16,7 +16,7 @@
     <uses-feature android:name="android.hardware.camora" />
 
     <application
-        android:name=".Mapinitialize"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:descendantFocusability="beforeDescendants"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".OrderActivity"/>
         <activity android:name=".CameraClass" />
         <activity android:name=".search" />
         <activity android:name=".Order" />

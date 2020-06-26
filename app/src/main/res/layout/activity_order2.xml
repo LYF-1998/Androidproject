@@ -43,26 +43,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/order_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点餐"/>
+            android:text="点餐" />
+
         <Button
             android:id="@+id/order_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="评价"/>
+            android:text="评价" />
+
         <Button
             android:id="@+id/order_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="商家"/>
+            android:text="商家" />
+
         <Button
             android:id="@+id/order_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="特色"/>
+            android:text="特色" />
     </LinearLayout>
 
     <FrameLayout

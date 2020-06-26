@@ -20,6 +20,8 @@ public class OrderActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order2);
+
+
         button1 = findViewById(R.id.order_button1);
         button2 = findViewById(R.id.order_button2);
         button3 = findViewById(R.id.order_button3);

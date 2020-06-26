@@ -11,6 +11,7 @@ public  class MainActivity extends AppCompatActivity {
     //public static String name = "";
     Recommend recommend;
     Setting setting;
+    MyOrder_Fragment myOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public  class MainActivity extends AppCompatActivity {
 
         recommend = new Recommend();
         setting = new Setting();
+        myOrder = new MyOrder_Fragment();
         UserInfo instance = UserInfo.getInstance();
         instance.username = "test";
         //final ArrayList<String> list = new ArrayList<>();
@@ -44,6 +46,7 @@ public  class MainActivity extends AppCompatActivity {
 
                     break;
                 case R.id.main_message:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment,myOrder).commit();
 
                     break;
                 case R.id.main_setting:
