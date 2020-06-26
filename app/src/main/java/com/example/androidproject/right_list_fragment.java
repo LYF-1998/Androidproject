@@ -15,12 +15,17 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -35,6 +40,8 @@ import java.util.concurrent.FutureTask;
  * create an instance of this fragment.
  */
 public class right_list_fragment extends Fragment {
+    Map<String,String> map = new LinkedHashMap<>();
+    List<Map<String,String>> list = new LinkedList<>();
     public static final String TAG = "MyFragment";
     private String str;
     private ListView listView;
@@ -112,11 +119,20 @@ public class right_list_fragment extends Fragment {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        String s = "";
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        try {
+                            s = objectMapper.writeValueAsString(list);
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
                         Date date = new Date(System.currentTimeMillis());
                         String time=simpleDateFormat.format(date);
                         UserInfo userinfo =UserInfo.getInstance();
-                        String sql = "INSERT INTO dishes(username,shopname,time,ds,price) VALUES('"+userinfo.getUsername()+"','"+userinfo.getShopname()+"','"+time+"','"+Content.order_dishes+"','"+Content.Allorder_price+"')";
+                        String sql = "INSERT INTO dishes(username,shopname,time,ds,price) VALUES('"
+                                +userinfo.getUsername()+"','"+userinfo.getShopname()+"','"
+                                +time+"','"+s+"','"+Content.Allorder_price+"')";
                         JDBCUtils.update(sql);
                         //Intent intent=new Intent(getActivity(),);
                         //startActivity(intent);
@@ -138,6 +154,9 @@ public class right_list_fragment extends Fragment {
                     final String order_name = crealist().get(j).getName();
                     String order_price = crealist().get(j).getPrice();
                     int price = new get_StringNum(order_price).get();
+                    map.put(order_name,a);
+                    list.add(map);
+                    map.clear();
                     Content.order_dishes=Content.order_dishes+order_name+a;
                     Content.Allorder_price=Content.Allorder_price+price;
 
