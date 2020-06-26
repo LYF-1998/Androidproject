@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class OrderActivity extends FragmentActivity  {
+public class OrderActivity extends AppCompatActivity  {
     private Button button1,button2,button3,button4;
     private int shop_id;
     private OrderFragment myFragment;

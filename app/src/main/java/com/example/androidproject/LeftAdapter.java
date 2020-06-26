@@ -39,7 +39,7 @@ import android.widget.TextView;
             TextView tv = (TextView) convertView.findViewById(R.id.tv);
             mPosition = position;
             tv.setText(strings[position]);
-            if (position == Order.mPosition) {
+            if (position == OrderFragment.mPosition) {
                 convertView.setBackgroundResource(R.color.text_gray);
             } else {
                 convertView.setBackgroundColor(Color.parseColor("#f4f4f4"));
