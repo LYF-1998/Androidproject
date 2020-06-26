@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Feature">
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/textView3"
