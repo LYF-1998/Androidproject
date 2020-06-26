@@ -30,10 +30,11 @@ public class K_Server extends AppCompatActivity {
     };
     Button button;
     EditText editText;
-    String message = "";
+    String message = "",name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        name = UserInfo.getInstance().username;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
         button = findViewById(R.id.serverbutton);
@@ -45,7 +46,7 @@ public class K_Server extends AppCompatActivity {
                 FutureTask<Integer> task = new FutureTask<>(new Callable<Integer>() {
                     @Override
                     public Integer call() throws Exception {
-                        String sql = "update user set suggestion = '" + message + "' where username = '" + K_UserInformationInterface.name +"';";
+                        String sql = "update user set suggestion = '" + message + "' where username = '" + name +"';";
                         int update = JDBCUtils.update(sql);
                         JDBCUtils.close();
                         return update;

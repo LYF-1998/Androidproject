@@ -15,9 +15,6 @@
  */
 package com.example.androidproject.zxing.activity;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -34,13 +31,19 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
 import com.example.androidproject.R;
 import com.example.androidproject.zxing.camera.CameraManager;
 import com.example.androidproject.zxing.decode.DecodeThread;
 import com.example.androidproject.zxing.utils.BeepManager;
 import com.example.androidproject.zxing.utils.CaptureActivityHandler;
 import com.example.androidproject.zxing.utils.InactivityTimer;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+
 import com.google.zxing.Result;
+
 
 /**
  * This activity opens the camera and does the actual scanning on a background

@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 public  class MainActivity extends AppCompatActivity {
-    public static String name = "";
+    //public static String name = "";
     Recommend recommend;
     Setting setting;
 
@@ -20,6 +20,7 @@ public  class MainActivity extends AppCompatActivity {
         recommend = new Recommend();
         setting = new Setting();
         UserInfo instance = UserInfo.getInstance();
+        instance.username = "test";
         //final ArrayList<String> list = new ArrayList<>();
 
         setContentView(R.layout.activity_main);

@@ -5,7 +5,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,8 +32,10 @@ public class OrderActivity extends AppCompatActivity  {
         Bundle b=getIntent().getExtras();
         shop_id=b.getInt("shop_id");
         TextView name= findViewById(R.id.shop_name);
+
         String info=b.getString("shop_name");
         name.setText(info);
+        //name.setTextColor(030303);
         myFragment = new OrderFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
