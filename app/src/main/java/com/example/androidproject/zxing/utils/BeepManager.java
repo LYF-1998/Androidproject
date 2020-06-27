@@ -16,9 +16,6 @@
 
 package com.example.androidproject.zxing.utils;
 
-import java.io.Closeable;
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -31,6 +28,9 @@ import android.util.Log;
 
 import com.example.androidproject.R;
 import com.example.androidproject.zxing.activity.CaptureActivity;
+
+import java.io.Closeable;
+import java.io.IOException;
 
 /**
  * Manages beeps and vibrations for {@link CaptureActivity}.

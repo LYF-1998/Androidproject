@@ -1,15 +1,14 @@
 package com.example.androidproject;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -90,7 +89,8 @@ public class MyOrder_Fragment extends Fragment {
             public List<Myorder_item> call() throws Exception {
                 List<Myorder_item> ldate = new LinkedList<>();
                 int i = 1;
-                String sql1 = "select * from dishes where username='lyf' ";
+                String sql1 = "select * from dishes where username='"
+                        + UserInfo.getInstance().username + "' ";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     ldate.add(new Myorder_item(resultSet.getString("ds"),resultSet.getString("price") ,resultSet.getString("time")));

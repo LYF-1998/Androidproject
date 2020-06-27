@@ -1,15 +1,14 @@
 package com.example.androidproject;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -92,7 +91,8 @@ public class EvaluateFragment extends Fragment {
             public List<Evaluate_item> call() throws Exception {
                 List<Evaluate_item> ldate = new LinkedList<>();
                 int i = 1;
-                String sql1 = "select * from evaluate where business='鸡公煲' ";
+                String sql1 = "select * from evaluate where business='"
+                        + UserInfo.getInstance().shopname + "' ";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     ldate.add(new Evaluate_item(resultSet.getString("user"),resultSet.getString("evaluate") ));

@@ -15,12 +15,6 @@
  */
 
 package com.example.androidproject.zxing.decode;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -28,6 +22,13 @@ import android.os.Looper;
 import com.example.androidproject.zxing.activity.CaptureActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * This thread does all the heavy lifting of decoding the images.

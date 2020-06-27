@@ -1,9 +1,5 @@
 package com.example.androidproject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class UserInfo {
     private static UserInfo instance;
     private UserInfo() {
@@ -21,9 +17,6 @@ public class UserInfo {
     public String username;
     public String phone;
     public String address;
-    public Map<String,String> dishesname;
-    public List<String> dishs = new ArrayList<>();
-    public String dishes;
     public String shopname;
 
 
@@ -52,27 +45,4 @@ public class UserInfo {
         this.address = address;
     }
 
-    public Map<String, String> getDishesname() {
-        return dishesname;
-    }
-
-    public void setDishesname(Map<String, String> dishesname) {
-        this.dishesname = dishesname;
-    }
-
-    public List<String> getDishs() {
-        return dishs;
-    }
-
-    public void setDishs(List<String> dishs) {
-        this.dishs = dishs;
-    }
-
-    public String getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(String dishes) {
-        this.dishes = dishes;
-    }
 }

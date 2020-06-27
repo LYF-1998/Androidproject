@@ -16,15 +16,16 @@
 
 package com.example.androidproject.zxing.camera;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.RejectedExecutionException;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.RejectedExecutionException;
 
 public class AutoFocusManager implements Camera.AutoFocusCallback {
 

@@ -1,5 +1,5 @@
 package com.example.androidproject.zxing.activity;
-import com.example.androidproject.R;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-
+import com.example.androidproject.R;
 import com.example.androidproject.zxing.decode.DecodeThread;
 
 public class ResultActivity extends Activity {

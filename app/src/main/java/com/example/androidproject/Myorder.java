@@ -1,20 +1,8 @@
 package com.example.androidproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.sql.ResultSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Myorder extends AppCompatActivity {
 //    private ListView listview;

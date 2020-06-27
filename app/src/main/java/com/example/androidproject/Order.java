@@ -1,13 +1,8 @@
 package com.example.androidproject;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 public class Order extends FragmentActivity  {
 //    private String[] strs = { "热销", "优惠", "本店特色", "主食", "饮品酒水" };

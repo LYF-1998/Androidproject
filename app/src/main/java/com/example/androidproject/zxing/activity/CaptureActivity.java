@@ -38,11 +38,10 @@ import com.example.androidproject.zxing.decode.DecodeThread;
 import com.example.androidproject.zxing.utils.BeepManager;
 import com.example.androidproject.zxing.utils.CaptureActivityHandler;
 import com.example.androidproject.zxing.utils.InactivityTimer;
+import com.google.zxing.Result;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-
-import com.google.zxing.Result;
 
 
 /**

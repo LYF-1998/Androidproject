@@ -1,14 +1,13 @@
 package com.example.androidproject;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -90,7 +89,8 @@ public class InformationFragment extends Fragment {
                 List<String> list3 = new ArrayList<>();
                 List<String> list4 = new ArrayList<>();
                 List<String> list5 = new ArrayList<>();
-                String sql = "select * from commodity where business='鸡公煲'";
+                String sql = "select * from commodity where business='"
+                        + UserInfo.getInstance().shopname + "'";
                 ResultSet resultSet = JDBCUtils.query(sql);
                 while (resultSet.next()) {
                     String business = resultSet.getString("business");

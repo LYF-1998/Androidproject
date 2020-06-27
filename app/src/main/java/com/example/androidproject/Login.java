@@ -2,12 +2,15 @@ package com.example.androidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.ResultSet;
@@ -15,6 +18,16 @@ import java.sql.SQLException;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
+    private final int SUCCESS = 0x01;
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == SUCCESS){
+
+            }
+        }
+    };
 
     private EditText u_username;
     private EditText u_password;
@@ -42,7 +55,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String sql1 = "select * from user where username='"+u_username.getText().toString()+"' and password='"+u_password.getText().toString()+"'";
+                String sql1 = "select * from user where username='"+u_username.getText().toString()
+                        +"' and password='"+u_password.getText().toString()+"'";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 try {
                     if(resultSet.next()) {

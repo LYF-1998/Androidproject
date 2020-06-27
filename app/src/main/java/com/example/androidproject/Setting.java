@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -35,8 +34,6 @@ public class Setting extends Fragment {
     TextView username,number;
     ImageView setImage,headImage;
     UserInfo instance = UserInfo.getInstance();
-    Camera camera;
-    boolean isprevious = false;
 
 
     // TODO: Rename parameter arguments, choose names that match

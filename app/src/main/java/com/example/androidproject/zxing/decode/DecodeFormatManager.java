@@ -16,11 +16,11 @@
 
 package com.example.androidproject.zxing.decode;
 
+import com.google.zxing.BarcodeFormat;
+
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
-
-import com.google.zxing.BarcodeFormat;
 
 public class DecodeFormatManager {
 
