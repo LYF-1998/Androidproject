@@ -7,20 +7,20 @@
     tools:context=".Feature">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="390dp"
         android:scaleType="fitXY" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textSize="20sp"
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="#FF0000"/>
@@ -34,7 +34,7 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/introduction"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:paddingTop="10dp"/>

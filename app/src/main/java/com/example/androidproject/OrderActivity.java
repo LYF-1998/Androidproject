@@ -1,9 +1,11 @@
 package com.example.androidproject;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class OrderActivity extends AppCompatActivity  {
     private Button button1,button2,button3,button4;
+    private ImageView image;
     private int shop_id;
     private OrderFragment myFragment;
     private TextView name;
@@ -19,7 +22,7 @@ public class OrderActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order2);
 
-
+        image=findViewById(R.id.shop_image);
         button1 = findViewById(R.id.order_button1);
         button2 = findViewById(R.id.order_button2);
         button3 = findViewById(R.id.order_button3);
@@ -35,6 +38,15 @@ public class OrderActivity extends AppCompatActivity  {
         String info=b.getString("shop_name");
         Log.v("name",info);
         name.setText(info);
+        switch (info){
+            case "鸡公煲":
+                image.setImageResource(R.drawable.jigongbao);
+                // iv.setImageResource(R.drawable.address);
+                break;
+            case"排骨米饭":
+                image.setImageResource(R.drawable.paigumifan);
+                break;
+        }
         myFragment = new OrderFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();

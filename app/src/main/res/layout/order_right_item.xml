@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    >
     <ImageView
         android:id="@+id/r_image"
         android:layout_width="100dp"
@@ -60,7 +62,8 @@
             android:layout_centerInParent="true"
             android:background="#0000"
             android:text="+"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:focusable="false"/>
 
         <EditText
             android:id="@+id/quantity"
@@ -82,7 +85,8 @@
             android:layout_toLeftOf="@id/quantity"
             android:background="#0000"
             android:text="-"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:focusable="false"/>
 
     </RelativeLayout>
 

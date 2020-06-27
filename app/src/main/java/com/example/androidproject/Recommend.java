@@ -57,9 +57,6 @@ public class Recommend extends Fragment implements View.OnClickListener{
     // private  String[] names={"白斩鸡","地三鲜","剁椒鱼头","干锅土豆","酸菜鱼","梅菜扣肉"};
     // private String[]  price={"23","22","18","27","14","15"};
     // private String[]  hot={"156","234","121","54","34","20"};
-    private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao,
-            R.mipmap.ganguotudou,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou,
-            R.mipmap.suancaiyu,R.mipmap.meicaikourou,R.mipmap.baizhanji,R.mipmap.disanxian,R.mipmap.duojiao};
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -167,15 +164,15 @@ public class Recommend extends Fragment implements View.OnClickListener{
             @Override
             public List<command_item> call() throws Exception {
                 List<command_item> mData = new LinkedList<>();
-                int i = 1;
                 String sql1 = "select * from shop";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
+                    String p=resultSet.getString("shop_picture");
+                    int id = getResources().getIdentifier(p,"drawable", "com.example.androidproject");
                     mData.add(new command_item(resultSet.getString(
                             "shop_name"),"配送费："+resultSet.getInt("shop_price")+"￥",
                             "月销量"+resultSet.getInt("shop_quantity")+"份",
-                            icons[i]));
-                    i++;
+                            id));
                 }
 
                 return mData;

@@ -1,5 +1,6 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,10 +40,7 @@ public class right_list_fragment extends Fragment {
     private ListView listView;
     private  int mshop_id;
     private  int mclass_id;
-    private int[] icons={R.mipmap.baizhanji,R.mipmap.disanxian,
-            R.mipmap.duojiao,R.mipmap.ganguotudou,R.mipmap.suancaiyu,R.mipmap.meicaikourou};
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)  {
         View view = inflater.inflate(R.layout.fragment_right_list_fragment, null);
@@ -76,7 +74,7 @@ public class right_list_fragment extends Fragment {
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
                     String p=resultSet.getString("order_picture");
-                    int id = getResources().getIdentifier(p,"mipmap", "com.example.androidproject");
+                    int id = getResources().getIdentifier(p,"drawable", "com.example.androidproject");
                     mData.add(new command_item(resultSet.getString(
                             "order_name"),"单价"+resultSet.getString("order_price")+"元",
                             "月销量"+resultSet.getInt("order_quantity")+"份",
@@ -143,12 +141,16 @@ public class right_list_fragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            UserInfo instance = UserInfo.getInstance();
                             int num = get_order_quantity(order_name);
+                            int s_num = get_quantity(instance.getShopname());
                             Log.v("num:",String.valueOf(num));
                             int sum=num+b;
+                            int s_sum=s_num+b;
                             String sql1 = "update order1 set order_quantity='"+sum+"' where order_name='"+order_name+"'";
+                            String sql2 = "update shop set shop_quantity='"+s_sum+"' where shop_name='"+instance.getShopname()+"'";
                             JDBCUtils.update(sql1);
-
+                            JDBCUtils.update(sql2);
                             JDBCUtils.close();
                         }
                     }).start();
@@ -162,34 +164,44 @@ public class right_list_fragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                //String order_name = crealist().get(i).getName();
-                //String order_price = crealist().get(i).getPrice();
-                //String order_quantity = crealist().get(i).getHot();
-                //int quantity = new get_StringNum(order_quantity).get();
-                //int price = new get_StringNum(order_price).get();
-                //Content.order_dishes=Content.order_dishes+order_name;
-                //Content.order_dishes[i]=order_name;
-                //Content.order_quantity=Content.order_quantity+order_name+"1份 ";
-               // Content.Allorder_price=Content.Allorder_price+price;
-               // Toast.makeText(getActivity(),Content.order_quantity+"总计"+String.valueOf(Content.Allorder_price)
-                //        +"元",Toast.LENGTH_LONG).show();
-                //Log.v("价格", String.valueOf(Content.Allorder_price));
+                String order_name = crealist().get(i).getName();
+                String order_price = crealist().get(i).getPrice();
+                Bundle bundle = new Bundle();
+                bundle.putString("dishes_name", order_name);
+                bundle.putString("dishes_price",order_price);
+                Intent intent = new Intent(getActivity(),dishes_introduction.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
-    private int get_order_quantity(String order_name){
-        int num=0;
-        String sql  = "select order1.order_quantity from order1 where order_name='"+order_name+"'";
-        ResultSet resultSet=JDBCUtils.query(sql);
+    private int get_order_quantity(String order_name) {
+        int num = 0;
+        String sql = "select order1.order_quantity from order1 where order_name='" + order_name + "'";
+        ResultSet resultSet = JDBCUtils.query(sql);
         try {
             resultSet.next();
-            num=resultSet.getInt("order_quantity");
+            num = resultSet.getInt("order_quantity");
             //Log.v("num1:",String.valueOf(num));
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return num;
         }
+    }
+        private int get_quantity(String shop_name){
+            int snum=0;
+            String sql  = "select shop_quantity from shop where shop_name='"+shop_name+"'";
+            ResultSet resultSet=JDBCUtils.query(sql);
+            try {
+                resultSet.next();
+                snum=resultSet.getInt("shop_quantity");
+                //Log.v("num1:",String.valueOf(num));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                return snum;
+            }
 
     }
 

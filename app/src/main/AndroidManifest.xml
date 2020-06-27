@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".OrderActivity"/>
+        <activity android:name=".dishes_introduction"></activity>
+        <activity android:name=".OrderActivity" />
         <activity android:name=".CameraClass" />
         <activity android:name=".search" />
         <activity android:name=".Order" />
@@ -55,7 +56,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scanner"/>
+        <activity android:name=".scanner" />
     </application>
 
 </manifest>
