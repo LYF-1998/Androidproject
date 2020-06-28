@@ -23,29 +23,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:textSize="20sp"
-            android:textColor="#00FFFF"
-            />
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:textSize="20sp"
-            android:textColor="#00FF00"
             android:layout_marginTop="10dp"
-            />
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:textSize="20sp"
-            android:textColor="#33FF86"
             android:layout_marginTop="10dp"
-            />
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

@@ -94,6 +94,27 @@
                 android:text="注册"
                 android:textColor="#ffffff"
                 android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="75dp"
+                    android:text="记住密码" />
+
+                <CheckBox
+                    android:id="@+id/auto_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="78dp"
+                    android:text="自动登陆" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -107,5 +128,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:text="登陆"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="42dp"
+        android:layout_height="452dp"
+        android:orientation="horizontal" />
 
 </RelativeLayout>

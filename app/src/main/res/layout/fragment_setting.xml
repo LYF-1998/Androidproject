@@ -68,8 +68,8 @@
             android:id="@+id/addbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
             android:background="#FFFFFF"
+            android:drawableLeft="@android:drawable/ic_menu_mylocation"
             android:gravity="center_vertical"
             android:text="我的地址" />
 
@@ -78,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:drawableLeft="@android:drawable/ic_input_get"
             android:gravity="center_vertical"
             android:text="我的订单" />
 
@@ -86,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:gravity="center_vertical"
             android:text="投诉与建议" />
 
@@ -94,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:drawableLeft="@android:drawable/ic_menu_info_details"
             android:gravity="center_vertical"
             android:text="关于我们" />
 
