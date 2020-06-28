@@ -31,7 +31,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == SUCCESS){
-
             }
         }
     };
@@ -40,16 +39,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private EditText u_password;
     private Button   u_login;
     private Button   u_register;
-    //private SharedPreferences sp;
+//    private SharedPreferences sp;
     private  SharedHelper sp;
-    private Context mContext;
+//    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindViews();
-        mContext = getApplicationContext();
-        sp = new SharedHelper(mContext);
+//        mContext = getApplicationContext();
+        sp = SharedHelper.getInstance();
 
            /* if (sp.getBoolean("ISCHECK", false)) {
                 remember.setChecked(true);

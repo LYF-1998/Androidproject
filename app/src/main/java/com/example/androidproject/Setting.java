@@ -9,12 +9,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -28,9 +30,10 @@ import java.io.InputStream;
  * create an instance of this fragment.
  */
 public class Setting extends Fragment {
+    SharedHelper sharedHelper = SharedHelper.getInstance();
     private static final int PICK_PHOTO = 0x00;
     private final int CAMERA_REQUEST = 0x01;
-    Button button1,button2,button3,button4;
+    Button button1,button2,button3,button4,clearbut;
     TextView username,number;
     ImageView setImage,headImage;
     UserInfo instance = UserInfo.getInstance();
@@ -62,6 +65,7 @@ public class Setting extends Fragment {
         button2 = getActivity().findViewById(R.id.addbutton);
         button3 = getActivity().findViewById(R.id.collectionbutton);
         button4 = getActivity().findViewById(R.id.serverbutton);
+        clearbut = getActivity().findViewById(R.id.setting_clearbut);
         username = getActivity().findViewById(R.id.username);
         number = getActivity().findViewById(R.id.number);
         setImage = getActivity().findViewById(R.id.setting_set);
@@ -99,6 +103,19 @@ public class Setting extends Fragment {
             public void onClick(View v) {
                 //Toast.makeText(UserInformationInterface.this,"button4",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), K_Server.class);
+                startActivity(intent);
+            }
+        });
+        clearbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                instance.clear();
+                sharedHelper.put_false("ISCHECK");
+                sharedHelper.put_false("AUTO_ISCHECK");
+
+
+                Intent intent = new Intent(getActivity(), Login.class);
+                Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

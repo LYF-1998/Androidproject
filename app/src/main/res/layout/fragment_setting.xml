@@ -60,9 +60,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/userinterfacelinearlayout1"
         android:layout_marginTop="100dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/bg">
 
         <Button
             android:id="@+id/addbutton"
@@ -99,7 +99,19 @@
             android:drawableLeft="@android:drawable/ic_menu_info_details"
             android:gravity="center_vertical"
             android:text="关于我们" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            />
+        <Button
+        android:id="@+id/setting_clearbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注销登录"
+        android:layout_gravity="center"
+        android:background="@drawable/bluebutton"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.example.androidproject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 public class UserInfo {
     private static UserInfo instance;
     private UserInfo() {
@@ -45,4 +48,11 @@ public class UserInfo {
         this.address = address;
     }
 
+    public void clear(){
+        SharedPreferences sp = MyApplication.getContext().getSharedPreferences("mysp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", null);
+        editor.putString("passwd", null);
+        editor.commit();
+    }
 }
