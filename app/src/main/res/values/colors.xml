@@ -16,5 +16,6 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="login_background">#1e90ff</color>
     <color name="goldenrod">#daa520</color>
+    <color name="bg">#F5F5F5</color>
 
 </resources>

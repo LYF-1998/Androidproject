@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#C3C3C3">
+    android:background="@color/bg">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/s_orderlist"/>
+        android:id="@+id/s_orderlist"
+        android:background="#FFFFFF"
+        android:layout_margin="7dp"/>
 </LinearLayout>
