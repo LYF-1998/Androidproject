@@ -59,7 +59,8 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
-                android:hint="搜索"/>
+                android:drawableRight="@android:drawable/ic_menu_search"
+                android:hint="搜索" />
 
             <Button
                 android:id="@+id/search_confirm"
