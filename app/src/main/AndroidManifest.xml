@@ -11,9 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- <uses-permission android:name="android.permission.CAMERA"/> -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camora" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MyApplication"
@@ -24,10 +29,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".dishes_introduction"></activity>
+        <activity android:name=".encoder"> </activity>
+        <activity android:name=".dishes_introduction" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".CameraClass" />
         <activity android:name=".search" />
+        <activity android:name=".zxing.activity.CaptureActivity"></activity>
+        <activity android:name=".zxing.activity.ResultActivity"></activity>
         <activity android:name=".Order" />
         <activity android:name=".Register" />
         <activity android:name=".Location" />

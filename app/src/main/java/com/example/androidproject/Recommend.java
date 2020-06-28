@@ -278,7 +278,8 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 startActivity(intent_scanner);
                 break;
             case R.id.code:
-
+                Intent intent_encoder = new Intent(getActivity(),encoder.class);
+                startActivity(intent_encoder);
                 break;
             case R.id.search_confirm:
                  Intent intent1=new Intent(getActivity(),search.class);

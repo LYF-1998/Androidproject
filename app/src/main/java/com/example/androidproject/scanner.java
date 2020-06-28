@@ -1,6 +1,8 @@
 package com.example.androidproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidproject.zxing.activity.CaptureActivity;
 
+import java.io.FileNotFoundException;
+
 
 public class scanner extends AppCompatActivity {
 
-   private Button button;
+   private Button button,button2;
     private TextView text;
 
     @Override
@@ -22,12 +26,19 @@ public class scanner extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
         text = (TextView) findViewById(R.id.text);
         button = (Button) findViewById(R.id.button);
+        button2=(Button)findViewById(R.id.button2);
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(scanner.this, CaptureActivity.class));
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -40,6 +51,7 @@ public class scanner extends AppCompatActivity {
             //显示扫描到的内容
             text.setText(bundle.getString("result"));
         }
+
 
     }
 
