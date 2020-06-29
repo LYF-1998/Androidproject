@@ -1,13 +1,9 @@
 package com.example.androidproject;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -60,6 +56,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         //startActivity(intent);
                     }
             }*/
+
         if(sp.check_f("ISCHECK")){
             remember.setChecked(true);
             Map<String,String> data = sp.read();
@@ -67,6 +64,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             u_password.setText(data.get("passwd"));
             if(sp.check_f("AUTO_ISCHECK")){
                 auto_login.setChecked(true);
+                UserInfo instance = UserInfo.getInstance();
+                instance.setUsername(u_username.getText().toString());
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
             }

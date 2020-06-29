@@ -2,8 +2,7 @@ package com.example.androidproject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
-
+//import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +36,13 @@ public class SharedHelper {
         editor.putString("passwd", passwd);
         editor.commit();
         //Toast.makeText(mContext, "信息已写入SharedPreference中", Toast.LENGTH_SHORT).show();
+    }
+    public void clear(){
+        SharedPreferences sp = MyApplication.getContext().getSharedPreferences("mysp", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", null);
+        editor.putString("passwd", null);
+        editor.commit();
     }
 
     //定义一个读取SP文件的方法

@@ -3,12 +3,14 @@ package com.example.androidproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
     private Button scanner;
     private Button code;
     private Button search_confirm;
+    private ImageView weather_icon;
     private EditText search;
     private TextView weather;
     private TextView command1;
@@ -88,11 +91,12 @@ public class Recommend extends Fragment implements View.OnClickListener{
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        UserInfo instance = UserInfo.getInstance();
+        String u_username =instance.getUsername();
+        Toast.makeText(getActivity(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -108,6 +112,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
     public void onStart() {
         super.onStart();
         bindViews();
+
         try {
             creatList();
         } catch (ExecutionException e) {
@@ -121,39 +126,37 @@ public class Recommend extends Fragment implements View.OnClickListener{
         command3.setText(command_list.get(2));
         command4.setText(command_list.get(3));
         command5.setText(command_list.get(4));
-        HeConfig.init("HE2006012053341638", "9ba0db84d7f04b0abbcf5eabcba662b8");
-        //个人开发者需要切换到免费服务域名，默认使用中国付费节点服务域名会报错
-        HeConfig.switchToFreeServerNode();
-        getWether();
-        UserInfo instance = UserInfo.getInstance();
-        String u_username =instance.getUsername();
-        Toast.makeText(getActivity(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        HeConfig.init("HE2006012053341638", "9ba0db84d7f04b0abbcf5eabcba662b8");
+        HeConfig.switchToFreeServerNode();
+        getWether();
         return inflater.inflate(R.layout.fragment_recommend, container, false);
     }
     private void bindViews() {
-        location = getActivity().findViewById(R.id.wlocation);
+        location = getView().findViewById(R.id.wlocation);
         location.setOnClickListener(this);
-        scanner = getActivity().findViewById(R.id.scanner);
+        scanner = getView().findViewById(R.id.scanner);
         scanner.setOnClickListener(this);
-        code = getActivity().findViewById(R.id.code);
+        code = getView().findViewById(R.id.code);
         code.setOnClickListener(this);
-        search_confirm=getActivity().findViewById(R.id.search_confirm);
+        search_confirm=getView().findViewById(R.id.search_confirm);
         search_confirm.setOnClickListener(this);
-        search=getActivity().findViewById(R.id.search);
+        search=getView().findViewById(R.id.search);
         location.setText(Content.Location);
-        weather = getActivity().findViewById(R.id.weather);
-        command1=getActivity().findViewById(R.id.command1);
-        command2=getActivity().findViewById(R.id.command2);
-        command3=getActivity().findViewById(R.id.command3);
-        command4=getActivity().findViewById(R.id.command4);
-        command5=getActivity().findViewById(R.id.command5);
+        weather = getView().findViewById(R.id.weather);
+        weather.setOnClickListener(this);
+        command1=getView().findViewById(R.id.command1);
+        command2=getView().findViewById(R.id.command2);
+        command3=getView().findViewById(R.id.command3);
+        command4=getView().findViewById(R.id.command4);
+        command5=getView().findViewById(R.id.command5);
+        weather_icon = getView().findViewById(R.id.weather_icon);
     }
 
     private void creatList() throws ExecutionException, InterruptedException {
@@ -227,16 +230,14 @@ public class Recommend extends Fragment implements View.OnClickListener{
     }
     private void getWether() {
         HeWeather.getWeatherNow(getActivity(), new HeWeather.OnResultWeatherNowBeanListener() {
-
-
             @Override
             public void onError(Throwable e) {
                 Toast.makeText(getActivity(), "weather error", Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onSuccess(Now dataObject) {
-                String wweather = null, wtemperature = null, wcity = null, wdistrict = null, wcid = null;
+                String wweather = null, wtemperature = null, wcity = null, wdistrict = null, wcid = null,wdir=null,wsrc=null;
+                int code;
                 if (dataObject.getStatus().equals("ok")) {
                     String JsonNow = new Gson().toJson(dataObject.getNow());
                     String JsonBasic = new Gson().toJson(dataObject.getBasic());
@@ -247,15 +248,21 @@ public class Recommend extends Fragment implements View.OnClickListener{
                         jsonObject1 = new JSONObject(JsonBasic);
                         wcity = jsonObject1.getString("parent_city");
                         wdistrict = jsonObject1.getString("location");
-                        wcid = jsonObject1.getString("cid");
+                        //wcid = jsonObject1.getString("cid");
+                        wdir = jsonObject.getString("wind_dir");
+                        wsrc = jsonObject.getString("wind_sc");
                         wweather = jsonObject.getString("cond_txt");
                         wtemperature = jsonObject.getString("tmp");
-                        Content.Location = wcity;
+                        code = jsonObject.getInt("cond_code");
+                        Content.Wind = wdir+wsrc;
+                        Content.Location = wcity+"市"+wdistrict+"区";
                         Content.Weather = wweather;
                         Content.Temperature = wtemperature;
-                        //Toast.makeText(Command.this, wcity + wweather, Toast.LENGTH_SHORT).show();
-
-                        location.setText(Content.Location);
+                        String scode = "light_"+String.valueOf(code)+"d";
+                        Log.v("@@@@",scode);
+                        int icon_id = getResources().getIdentifier(scode,"drawable", "com.example.androidproject");
+                        weather_icon.setBackgroundResource(icon_id);
+                        location.setText(wcity);
                         weather.setText(Content.Weather + " " + Content.Temperature + "℃");
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -282,9 +289,12 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 startActivity(intent_encoder);
                 break;
             case R.id.search_confirm:
-                 Intent intent1=new Intent(getActivity(),search.class);
-                 intent1.putExtra("search_text",search.getText().toString());
-                 startActivity(intent1);
+                Intent intent1=new Intent(getActivity(),search.class);
+                intent1.putExtra("search_text",search.getText().toString());
+                startActivity(intent1);
+                break;
+            case R.id.weather:
+                Toast.makeText(getActivity(), Content.Location+"，"+Content.Weather+"，"+Content.Wind+"级，"+Content.Temperature+"℃。", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

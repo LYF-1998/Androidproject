@@ -20,6 +20,13 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiCitySearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
 
 public class Location extends AppCompatActivity implements View.OnClickListener {
     private MapView mMapView;
@@ -32,6 +39,7 @@ public class Location extends AppCompatActivity implements View.OnClickListener 
     private TextView test;
     private LatLng latLng;
     private boolean isFirstLoc = true; // 是否首次定位
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +49,36 @@ public class Location extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_location);
         initView();
         initMap();
+        poi();
     }
+private void poi(){
+    PoiSearch poiSearch = PoiSearch.newInstance();
+    OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener() {
+        @Override
+        public void onGetPoiResult(PoiResult poiResult) {
 
+        }
+        @Override
+        public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+
+        }
+        @Override
+        public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+        }
+        //废弃
+        @Override
+        public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+        }
+    };
+    poiSearch.setOnGetPoiSearchResultListener(listener);
+    poiSearch.searchInCity(new PoiCitySearchOption()
+            .city("北京") //必填
+            .keyword("美食") //必填
+            .pageNum(10));
+    poiSearch.destroy();
+}
 
     private void initMap() {
         //获取地图控件引用
