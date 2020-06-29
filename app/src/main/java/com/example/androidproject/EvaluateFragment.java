@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +27,8 @@ import java.util.concurrent.FutureTask;
  */
 public class EvaluateFragment extends Fragment {
     ListView listview;
+    EditText editText;
+    Button button;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,9 +77,30 @@ public class EvaluateFragment extends Fragment {
     public void onStart() {
         super.onStart();
         listview = getActivity().findViewById(R.id.s_list);
+        editText = getActivity().findViewById(R.id.evaluate_edit);
+        button = getActivity().findViewById(R.id.evaluate_commit);
         //     List<List<String>> lists = getSong();
-        MyListDateAdpter adapter = new MyListDateAdpter();
-        listview.setAdapter(adapter);
+        setList(listview);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = editText.getText().toString();
+                String sql = "INSERT INTO evaluate(user,evaluate,business) VALUES('"
+                        +UserInfo.getInstance().username + "','"
+                        +s+ "','" + UserInfo.getInstance().shopname + "')";
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JDBCUtils.update(sql);
+                        JDBCUtils.close();
+                    }
+                }).start();
+                editText.setText("");
+                setList(listview);
+                Toast.makeText(getActivity(),"评价成功",Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override
@@ -83,6 +109,10 @@ public class EvaluateFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_evaluate, container, false);
 
+    }
+    public void setList(ListView listview){
+        MyListDateAdpter adapter = new MyListDateAdpter();
+        listview.setAdapter(adapter);
     }
 
     public List<Evaluate_item> getSong(){
