@@ -29,9 +29,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (msg.what == SUCCESS){
+            if (msg.what == FAILD){
                 Toast.makeText(Register.this, "该用户名已存在！", Toast.LENGTH_SHORT).show();
-            }else if (msg.what == FAILD){
+            }else if (msg.what == SUCCESS){
                 Toast.makeText(Register.this,"注册成功！快去登陆吧~~",Toast.LENGTH_SHORT).show();
             }
         }
@@ -68,7 +68,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         try {
                             boolean flag = resultSet.next();
                             Log.i("**************", String.valueOf(flag));
-                            if(resultSet.next()){
+                            if(flag){
                                 handler.sendEmptyMessage(FAILD);
 //                                Looper.prepare();
 //                                Toast.makeText(Register.this, "该用户名已存在！", Toast.LENGTH_SHORT).show();
