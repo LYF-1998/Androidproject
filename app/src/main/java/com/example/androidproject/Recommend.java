@@ -44,6 +44,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
     private Button scanner;
     private Button code;
     private Button search_confirm;
+    private Button share;
     private ImageView weather_icon;
     private EditText search;
     private TextView weather;
@@ -157,6 +158,8 @@ public class Recommend extends Fragment implements View.OnClickListener{
         command4=getView().findViewById(R.id.command4);
         command5=getView().findViewById(R.id.command5);
         weather_icon = getView().findViewById(R.id.weather_icon);
+        share = getView().findViewById(R.id.share);
+        share.setOnClickListener(this);
     }
 
     private void creatList() throws ExecutionException, InterruptedException {
@@ -295,6 +298,9 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 break;
             case R.id.weather:
                 Toast.makeText(getActivity(), Content.Location+"，"+Content.Weather+"，"+Content.Wind+"级，"+Content.Temperature+"℃。", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.share:
+
                 break;
         }
     }

@@ -150,7 +150,7 @@
                 android:layout_height="60dp"
                 android:layout_margin="21dp"
                 android:background="#00000000"
-                android:drawableTop="@android:drawable/ic_menu_camera"
+                android:drawableTop="@mipmap/scan"
                 android:text="扫一扫"
                 android:textStyle="bold" />
 
@@ -160,7 +160,7 @@
                 android:layout_height="60dp"
                 android:layout_margin="21dp"
                 android:background="#00000000"
-                android:drawableTop="@android:drawable/ic_menu_gallery"
+                android:drawableTop="@mipmap/encode"
                 android:text="付款码"
                 android:textStyle="bold" />
 
@@ -171,23 +171,23 @@
                 android:layout_margin="21dp"
                 android:background="#00000000"
                 android:drawableTop="@android:drawable/ic_menu_slideshow"
-                android:text="Button"
+                android:text="休闲"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/zanding2"
+                android:id="@+id/share"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="21dp"
                 android:background="#00000000"
                 android:drawableTop="@android:drawable/ic_menu_send"
-                android:text="Button"
+                android:text="分享"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <ListView
             android:id="@+id/command_list"
             android:layout_width="match_parent"
-            android:layout_height="435dp" />
+            android:layout_height="489dp" />
     </LinearLayout>
 </RelativeLayout>

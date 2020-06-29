@@ -93,7 +93,7 @@ public class MyOrder_Fragment extends Fragment {
                         + UserInfo.getInstance().username + "' ";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
-                    ldate.add(new Myorder_item(resultSet.getString("ds"),resultSet.getString("price") ,resultSet.getString("time")));
+                    ldate.add(new Myorder_item(resultSet.getString("shopname"),resultSet.getString("ds"),resultSet.getString("price") ,resultSet.getString("time")));
                     i++;
                 }
                 JDBCUtils.close();
@@ -139,9 +139,11 @@ public class MyOrder_Fragment extends Fragment {
                 holder.tv1 = convertView.findViewById(R.id.textView19);
                 holder.tv2 = convertView.findViewById(R.id.textView20);
                 holder.tv3 = convertView.findViewById(R.id.textView21);
+                holder.tv4 = convertView.findViewById(R.id.textView22);
                 holder.tv1.setText(dish.get(position).getPrice());
                 holder.tv2.setText(dish.get(position).getTime());
                 holder.tv3.setText(dish.get(position).getDs());
+                holder.tv4.setText(dish.get(position).getShop());
                 convertView.setTag(holder);
             }else{
                 holder = (MyViewHolder) convertView.getTag();
@@ -150,7 +152,7 @@ public class MyOrder_Fragment extends Fragment {
             return convertView;
         }
         class MyViewHolder{
-            public TextView tv1,tv2,tv3;
+            public TextView tv1,tv2,tv3,tv4;
         }
     }
 }

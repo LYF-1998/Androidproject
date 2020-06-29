@@ -1,7 +1,7 @@
 package com.example.androidproject;
 
 public class Myorder_item {
-    private String price,time,ds;
+    private String price,time,ds,shop;
 
     public String getPrice() {
         return price;
@@ -9,6 +9,13 @@ public class Myorder_item {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 
     public String getTime() {
@@ -27,9 +34,10 @@ public class Myorder_item {
         this.ds = ds;
     }
 
-    public Myorder_item(String price, String time, String ds) {
+    public Myorder_item(String shop,String price, String time, String ds) {
         this.price = price;
         this.time = time;
         this.ds = ds;
+        this.shop=shop;
     }
 }

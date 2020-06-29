@@ -12,7 +12,7 @@
         <com.baidu.mapapi.map.MapView
             android:id="@+id/bmapView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="684dp"
             android:clickable="true">
 
         </com.baidu.mapapi.map.MapView>
@@ -44,8 +44,7 @@
                 android:id="@+id/test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
@@ -24,18 +23,18 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:descendantFocusability="beforeDescendants"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/atb"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".encoder"> </activity>
+        <activity android:name=".encoder"></activity>
         <activity android:name=".dishes_introduction" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".CameraClass" />
         <activity android:name=".search" />
-        <activity android:name=".zxing.activity.CaptureActivity"></activity>
-        <activity android:name=".zxing.activity.ResultActivity"></activity>
+        <activity android:name=".zxing.activity.CaptureActivity" />
+        <activity android:name=".zxing.activity.ResultActivity" />
         <activity android:name=".Order" />
         <activity android:name=".Register" />
         <activity android:name=".Location" />
@@ -45,7 +44,19 @@
         <activity android:name=".K_UserInformationInterface" />
         <activity android:name=".K_BusinessOrder" />
         <activity android:name=".Set" />
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
 
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="sTs5h7tezyTRGH3N37K46g5SwQW4bBTU" />
