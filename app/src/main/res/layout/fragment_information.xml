@@ -23,10 +23,10 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="299dp"
+        android:layout_height="251dp"
         android:paddingLeft="20dp"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/textView9"

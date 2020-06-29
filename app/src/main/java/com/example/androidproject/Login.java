@@ -1,24 +1,33 @@
 package com.example.androidproject;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
     private CheckBox auto_login,remember;
-
+    private ImageView infoOperatingIV;
     private EditText u_username;
     private EditText u_password;
     private Button   u_login;
@@ -26,6 +35,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 //    private SharedPreferences sp;
     private  SharedHelper sp;
 //    private Context mContext;
+private final int SUCCESS = 0x01;
+    private final int FAILD = 0X00;
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == FAILD){
+                u_username.setText("");
+                u_password.setText("");
+                Toast.makeText(Login.this, "用户名或密码错误！", Toast.LENGTH_SHORT).show();
+            }else if (msg.what == SUCCESS){
+                loading();
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +78,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 auto_login.setChecked(true);
                 UserInfo instance = UserInfo.getInstance();
                 instance.setUsername(u_username.getText().toString());
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
+                loading();
+                //Intent intent = new Intent(Login.this, MainActivity.class);
+                //startActivity(intent);
             }
         }
         remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -121,20 +146,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 }
                                 //Map<String,String> data = sp.read();
                                 //Log.v("@@@@@@",data.get("username")+data.get("passwd"));
-                                Intent intent = new Intent(Login.this, MainActivity.class);
-                                //intent.putExtra("u_username",u_username.getText().toString());
                                 UserInfo instance = UserInfo.getInstance();
                                 instance.setUsername(u_username.getText().toString());
-                                startActivity(intent);
-
+                                handler.sendEmptyMessage(SUCCESS);
+                                //Intent intent = new Intent(Login.this, MainActivity.class);
+                                //intent.putExtra("u_username",u_username.getText().toString());
+                                //startActivity(intent);
                                 // Toast.makeText(getApplicationContext(),"欢迎用户"+u_username+"！",Toast.LENGTH_LONG).show();
                             }
                             else {
-                                Looper.prepare();
-                                Toast.makeText(getApplicationContext(), "用户名或密码错误！", Toast.LENGTH_LONG).show();
-                                Looper.loop();
-                                u_username.setText("");
-                                u_password.setText("");
+                                //Looper.prepare();
+                                //Toast.makeText(getApplicationContext(), "用户名或密码错误！", Toast.LENGTH_LONG).show();
+                                //Looper.loop();
+                                //u_username.setText("");
+                                //u_password.setText("");
+                                handler.sendEmptyMessage(FAILD);
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -148,6 +174,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
         }
+    }
+    private void loading(){
+        final ImageView infoOperatingIV = (ImageView)findViewById(R.id.infoOperating);
+        infoOperatingIV.setVisibility(0x00000000);
+        Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.tip);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        infoOperatingIV.startAnimation(operatingAnim);
+        Timer timer=new Timer();//实例化Timer类
+        timer.schedule(new TimerTask(){
+            public void run(){
+                infoOperatingIV.clearAnimation();
+                Intent intent = new Intent(Login.this,MainActivity.class);
+                startActivity(intent);
+            }},3000);//五百毫秒
     }
 
 
