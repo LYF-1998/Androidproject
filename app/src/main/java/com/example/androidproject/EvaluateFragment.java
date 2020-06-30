@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -84,10 +86,13 @@ public class EvaluateFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                Date date = new Date(System.currentTimeMillis());
+                String time=simpleDateFormat.format(date);
                 String s = editText.getText().toString();
-                String sql = "INSERT INTO evaluate(user,evaluate,business) VALUES('"
+                String sql = "INSERT INTO evaluate(user,evaluate,business,time) VALUES('"
                         +UserInfo.getInstance().username + "','"
-                        +s+ "','" + UserInfo.getInstance().shopname + "')";
+                        +s+ "','" + UserInfo.getInstance().shopname + "','"+time+"')";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -96,7 +101,7 @@ public class EvaluateFragment extends Fragment {
                     }
                 }).start();
                 editText.setText("");
-                setList(listview);
+                //setList(listview);
                 Toast.makeText(getActivity(),"评价成功",Toast.LENGTH_SHORT).show();
 
             }
@@ -105,7 +110,6 @@ public class EvaluateFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_evaluate, container, false);
 
@@ -125,7 +129,7 @@ public class EvaluateFragment extends Fragment {
                         + UserInfo.getInstance().shopname + "' ";
                 ResultSet resultSet = JDBCUtils.query(sql1);
                 while (resultSet.next()) {
-                    ldate.add(new Evaluate_item(resultSet.getString("user"),resultSet.getString("evaluate") ));
+                    ldate.add(new Evaluate_item(resultSet.getString("user"),resultSet.getString("evaluate"),resultSet.getString("time") ));
                     i++;
                 }
                 JDBCUtils.close();
@@ -170,8 +174,10 @@ public class EvaluateFragment extends Fragment {
                 holder = new MyViewHolder();
                 holder.tv1 = convertView.findViewById(R.id.textView);
                 holder.tv2 = convertView.findViewById(R.id.textView2);
+                holder.tv3 = convertView.findViewById(R.id.textView3);
                 holder.tv1.setText(lists.get(position).getUser());
                 holder.tv2.setText(lists.get(position).getEvaluate());
+                holder.tv3.setText(lists.get(position).getTime());
                 convertView.setTag(holder);
             }else{
                 holder = (MyViewHolder) convertView.getTag();
@@ -183,7 +189,7 @@ public class EvaluateFragment extends Fragment {
             return convertView;
         }
         class MyViewHolder{
-            public TextView tv1,tv2;
+            public TextView tv1,tv2,tv3;
         }
     }
 }

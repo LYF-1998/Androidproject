@@ -16,22 +16,22 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="130dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="110dp"
             android:gravity="center_horizontal">
 
             <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:background="@mipmap/ic_launcher_round"
-                android:src="@mipmap/ic_launcher_round" />
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@mipmap/aqp"
+                android:src="@mipmap/aqp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/iv_logo"
                 android:gravity="center_vertical"
                 android:text="@string/login_title"

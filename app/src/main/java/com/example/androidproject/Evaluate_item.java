@@ -3,10 +3,12 @@ package com.example.androidproject;
 public class Evaluate_item {
     private String user;
     private String evaluate;
+    private String  time;
 
-    public Evaluate_item(String user, String evaluate) {
+    public Evaluate_item(String user, String evaluate,String time) {
         this.user = user;
         this.evaluate = evaluate;
+        this.time = time;
     }
 
     public String getUser() {
@@ -23,5 +25,12 @@ public class Evaluate_item {
 
     public void setEvaluate(String evaluate) {
         this.evaluate = evaluate;
+    }
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
