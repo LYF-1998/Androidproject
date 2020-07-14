@@ -188,7 +188,7 @@ private final int SUCCESS = 0x01;
                 infoOperatingIV.clearAnimation();
                 Intent intent = new Intent(Login.this,MainActivity.class);
                 startActivity(intent);
-            }},1500);//五百毫秒
+            }},1000);//五百毫秒
     }
 
 

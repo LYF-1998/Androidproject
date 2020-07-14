@@ -63,7 +63,6 @@ public class QQShareActivity extends BaseActivity implements OnClickListener, On
         targetUrl = (TextView) findViewById(R.id.shareqq_target_url);
         summary = (TextView) findViewById(R.id.shareqq_summary);
         appName = (TextView) findViewById(R.id.shareqq_app_name);
-        arkInfo = (TextView) findViewById(R.id.shareqq_ark_edit);
 
         findViewById(R.id.shareqq_commit).setOnClickListener(this);
 
@@ -76,7 +75,6 @@ public class QQShareActivity extends BaseActivity implements OnClickListener, On
         mContainer_targetUrl = findViewById(R.id.qqshare_targetUrl_container);
         mContainer_imgUrl = findViewById(R.id.qqshare_imageUrl_container);
         mContainer_appName = findViewById(R.id.qqshare_appName_container);
-        mContainer_arkInfo = findViewById(R.id.qqshare_arkInfo_container);
 
         mRadioBtn_netImage = (RadioButton) findViewById(R.id.radioBtn_net_image);
         mRadioBtn_netImage.setOnClickListener(this);
@@ -125,13 +123,6 @@ public class QQShareActivity extends BaseActivity implements OnClickListener, On
                     showToast("在好友选择列表隐藏了qzone分享选项~~~");
                 }
 
-                if (QQShare.SHARE_TO_QQ_TYPE_IMAGE != shareType) {
-                    /*QQ分享增加ARK*/
-                    String arkStr = arkInfo.getText().toString();
-                    params.putString(QQShare.SHARE_TO_QQ_ARK_INFO, arkStr);
-                    /*QQ分享增加ARK end*/
-                }
-
                 doShareToQQ(params);
                 return;
             case R.id.radioBtn_net_image: // 定向分享网络图片
@@ -165,14 +156,14 @@ public class QQShareActivity extends BaseActivity implements OnClickListener, On
         switch (shareType) {
             case QQShare.SHARE_TO_QQ_TYPE_AUDIO:
                 mContainer_audioUrl.setVisibility(View.VISIBLE);
-                title.setText("不要每天陪我聊天因为我害怕会喜欢上你");
-                imageUrl.setText("http://y.gtimg.cn/music/photo_new/T002R300x300M000003KIU6V02sS7C.jpg?max_age=2592000");
+                title.setText("フリージア");
+                imageUrl.setText("http://p2.music.126.net/Oa-PaFEYGPv2c5B4mL43EA==/109951163697506315.jpg?param=130y130");
                 mEditTextAudioUrl
-                        .setText("http://dl.stream.qqmusic.qq.com/C400004A3WK61kSH3c.m4a?guid=1567768602&vkey=2A63FD1434006630168B72AF423E57EDE303C93EE613D951DFFF27CCD1B6C7EBAE4F4AD5F8F3B681A6132C070B431D0140AD72D11C5AB90A&uin=&fromtag=154");
+                        .setText("http://music.163.com/share/sina/direct/18/459925524?userid=546031904");
                 targetUrl
-                        .setText("http://c.y.qq.com/v8/playsong.html?songid=109325260&songmid=000kuo2H2xJqfA&songtype=0&source=mqq&_wv=1");
-                summary.setText("乔紫乔");
-                appName.setText("QQ音乐");
+                        .setText("http://music.163.com/share/sina/direct/18/459925524?userid=546031904");
+                summary.setText("Uru");
+                appName.setText("网易云音乐");
                 targetUrl.setVisibility(View.VISIBLE);
                 break;
             case QQShare.SHARE_TO_QQ_TYPE_DEFAULT:
@@ -191,7 +182,6 @@ public class QQShareActivity extends BaseActivity implements OnClickListener, On
         mContainer_targetUrl.setVisibility(View.VISIBLE);
         mContainer_imgUrl.setVisibility(View.VISIBLE);
         mContainer_appName.setVisibility(View.VISIBLE);
-        mContainer_arkInfo.setVisibility(View.VISIBLE);
         mRadioBtn_netImage.setChecked(true);
     }
 

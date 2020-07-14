@@ -57,7 +57,6 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
     private WBShareItemView mShareWebPageView;
     private WBShareItemView mShareMusicView;
     private WBShareItemView mShareVideoView;
-    private WBShareItemView mShareVoiceView;
     private Button          mSharedBtn;
     private IWeiboShareAPI  mWeiboShareAPI = null;
     private int mShareType = SHARE_CLIENT;
@@ -127,15 +126,13 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
                     mImageCheckbox.isChecked(),
                     mShareWebPageView.isChecked(),
                     mShareMusicView.isChecked(),
-                    mShareVideoView.isChecked(),
-                    mShareVoiceView.isChecked());
+                    mShareVideoView.isChecked());
         }
     }
 
 
     private void initViews() {
         mTitleView = (TextView) findViewById(R.id.share_title);
-        mTitleView.setText(R.string.weibosdk_demo_share_to_weibo_title);
         mImageView = (ImageView) findViewById(R.id.share_imageview);
         mTextCheckbox = (CheckBox) findViewById(R.id.share_text_checkbox);
         mImageCheckbox = (CheckBox) findViewById(R.id.shared_image_checkbox);
@@ -146,11 +143,9 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
         mShareWebPageView = (WBShareItemView)findViewById(R.id.share_webpage_view);
         mShareMusicView = (WBShareItemView)findViewById(R.id.share_music_view);
         mShareVideoView = (WBShareItemView)findViewById(R.id.share_video_view);
-        mShareVoiceView = (WBShareItemView)findViewById(R.id.share_voice_view);
         mShareWebPageView.setOnCheckedChangeListener(mCheckedChangeListener);
         mShareMusicView.setOnCheckedChangeListener(mCheckedChangeListener);
         mShareVideoView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVoiceView.setOnCheckedChangeListener(mCheckedChangeListener);
 
         mShareWebPageView.initWithRes(
                 R.string.weibosdk_demo_share_webpage_title,
@@ -172,13 +167,6 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
                 R.string.weibosdk_demo_share_video_title,
                 R.string.weibosdk_demo_share_video_desc,
                 R.string.weibosdk_demo_test_video_url);
-
-        mShareVoiceView.initWithRes(
-                R.string.weibosdk_demo_share_voice_title,
-                R.drawable.ic_share_voice_thumb,
-                R.string.weibosdk_demo_share_voice_title,
-                R.string.weibosdk_demo_share_voice_desc,
-                R.string.weibosdk_demo_test_voice_url);
     }
 
 
@@ -188,7 +176,6 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
             mShareWebPageView.setIsChecked(false);
             mShareMusicView.setIsChecked(false);
             mShareVideoView.setIsChecked(false);
-            mShareVoiceView.setIsChecked(false);
 
             view.setIsChecked(isChecked);
         }
@@ -196,27 +183,27 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
 
 
     private void sendMessage(boolean hasText, boolean hasImage,
-                             boolean hasWebpage, boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+                             boolean hasWebpage, boolean hasMusic, boolean hasVideo) {
 
         if (mShareType == SHARE_CLIENT) {
             if (mWeiboShareAPI.isWeiboAppSupportAPI()) {
                 int supportApi = mWeiboShareAPI.getWeiboAppSupportAPI();
                 if (supportApi >= 10351 /*ApiUtils.BUILD_INT_VER_2_2*/) {
-                    sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo, hasVoice);
+                    sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo);
                 } else {
-                    sendSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo/*, hasVoice*/);
+                    sendSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo);
                 }
             } else {
                 Toast.makeText(this, R.string.weibosdk_demo_not_support_api_hint, Toast.LENGTH_SHORT).show();
             }
         }
         else if (mShareType == SHARE_ALL_IN_ONE) {
-            sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo, hasVoice);
+            sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo);
         }
     }
 
     private void sendMultiMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-                                  boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+                                  boolean hasMusic, boolean hasVideo) {
 
         // 1. 初始化微博的分享消息
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
@@ -237,9 +224,6 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
         }
         if (hasVideo) {
             weiboMessage.mediaObject = getVideoObj();
-        }
-        if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
         }
 
         // 2. 初始化从第三方到微博的消息请求
@@ -281,7 +265,7 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
     }
 
     private void sendSingleMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-                                   boolean hasMusic, boolean hasVideo/*, boolean hasVoice*/) {
+                                   boolean hasMusic, boolean hasVideo) {
 
         // 1. 初始化微博的分享消息
         // 用户可以分享文本、图片、网页、音乐、视频中的一种
@@ -340,10 +324,7 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
             format = getString(R.string.weibosdk_demo_share_video_template);
             text = String.format(format, getString(R.string.weibosdk_demo_share_video_demo), demoUrl);
         }
-        if (mShareVoiceView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_voice_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_voice_demo), demoUrl);
-        }
+
 
         return text;
     }
@@ -404,7 +385,7 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
         musicObject.title = mShareMusicView.getTitle();
         musicObject.description = mShareMusicView.getShareDesc();
 
-        Bitmap  bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.atb);
+        Bitmap  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.music);
 
 
 
@@ -461,25 +442,5 @@ public class Sina_share extends Activity implements OnClickListener, IWeiboHandl
         return videoObject;
     }
 
-    /**
-     * 创建多媒体（音频）消息对象。
-     *
-     * @return 多媒体（音乐）消息对象。
-     */
-    private VoiceObject getVoiceObj() {
-        // 创建媒体消息
-        VoiceObject voiceObject = new VoiceObject();
-        voiceObject.identify = Utility.generateGUID();
-        voiceObject.title = mShareVoiceView.getTitle();
-        voiceObject.description = mShareVoiceView.getShareDesc();
-        Bitmap  bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.atb);
-        // 设置 Bitmap 类型的图片到视频对象里      设置缩略图。 注意：最终压缩过的缩略图大小不得超过 32kb。
-        voiceObject.setThumbImage(bitmap);
-        voiceObject.actionUrl = mShareVoiceView.getShareUrl();
-        voiceObject.dataUrl = "www.weibo.com";
-        voiceObject.dataHdUrl = "www.weibo.com";
-        voiceObject.duration = 10;
-        voiceObject.defaultText = "Voice 默认文案";
-        return voiceObject;
-    }
+
 }

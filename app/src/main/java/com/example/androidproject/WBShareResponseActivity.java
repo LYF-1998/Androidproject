@@ -71,8 +71,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
     private WBShareItemView mShareMusicView;
     /** 分享视频控件 */
     private WBShareItemView mShareVideoView;
-    /** 分享声音控件 */
-    private WBShareItemView mShareVoiceView;
     /** 分享按钮 */
     private Button          mSharedBtn;
 
@@ -147,8 +145,7 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
                     mImageCheckbox.isChecked(),
                     mShareWebPageView.isChecked(),
                     mShareMusicView.isChecked(),
-                    mShareVideoView.isChecked(),
-                    mShareVoiceView.isChecked());
+                    mShareVideoView.isChecked());
 
             // 结束掉当前 Activity
             finish();
@@ -171,11 +168,9 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         mShareWebPageView = (WBShareItemView)findViewById(R.id.share_webpage_view);
         mShareMusicView = (WBShareItemView)findViewById(R.id.share_music_view);
         mShareVideoView = (WBShareItemView)findViewById(R.id.share_video_view);
-        mShareVoiceView = (WBShareItemView)findViewById(R.id.share_voice_view);
         mShareWebPageView.setOnCheckedChangeListener(mCheckedChangeListener);
         mShareMusicView.setOnCheckedChangeListener(mCheckedChangeListener);
         mShareVideoView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVoiceView.setOnCheckedChangeListener(mCheckedChangeListener);
 
         mShareWebPageView.initWithRes(
                 R.string.weibosdk_demo_share_webpage_title,
@@ -198,12 +193,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
                 R.string.weibosdk_demo_share_video_desc,
                 R.string.weibosdk_demo_test_video_url);
 
-        mShareVoiceView.initWithRes(
-                R.string.weibosdk_demo_share_voice_title,
-                R.drawable.ic_share_voice_thumb,
-                R.string.weibosdk_demo_share_voice_title,
-                R.string.weibosdk_demo_share_voice_desc,
-                R.string.weibosdk_demo_test_voice_url);
     }
 
     /**
@@ -215,7 +204,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
             mShareWebPageView.setIsChecked(false);
             mShareMusicView.setIsChecked(false);
             mShareVideoView.setIsChecked(false);
-            mShareVoiceView.setIsChecked(false);
 
             view.setIsChecked(isChecked);
         }
@@ -226,14 +214,14 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
      * @see {@link #responseMultiMessage} 或者 {@link #responseSingleMessage}
      */
     private void responseMessage(boolean hasText, boolean hasImage,
-                                 boolean hasWebpage, boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+                                 boolean hasWebpage, boolean hasMusic, boolean hasVideo) {
 
         if (mShareWeiboAPI.isWeiboAppSupportAPI()) {
             int supportApi = mShareWeiboAPI.getWeiboAppSupportAPI();
             if (supportApi >= 10351 /*ApiUtils.BUILD_INT_VER_2_2*/) {
-                responseMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo, hasVoice);
+                responseMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo);
             } else {
-                responseSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo/*, hasVoice*/);
+                responseSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo);
             }
         } else {
             Toast.makeText(this, R.string.weibosdk_demo_not_support_api_hint, Toast.LENGTH_SHORT).show();
@@ -253,7 +241,7 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
      * @param hasVoice   分享的内容是否有声音
      */
     private void responseMultiMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-                                      boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+                                      boolean hasMusic, boolean hasVideo) {
         // 1. 初始化微博的分享消息
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
         if (hasText) {
@@ -274,9 +262,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         if (hasVideo) {
             weiboMessage.mediaObject = getVideoObj();
         }
-        if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }
 
         // 2. 初始化从微博到第三方的消息请求
         ProvideMultiMessageForWeiboResponse response = new ProvideMultiMessageForWeiboResponse();
@@ -289,7 +274,7 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
     }
 
     private void responseSingleMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-                                       boolean hasMusic, boolean hasVideo/*, boolean hasVoice*/) {
+                                       boolean hasMusic, boolean hasVideo) {
 
         // 1. 初始化微博的分享消息
         // 用户可以分享文本、图片、网页、音乐、视频中的一种
@@ -309,9 +294,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         if (hasVideo) {
             weiboMessage.mediaObject = getVideoObj();
         }
-        /*if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }*/
 
         // 2. 初始化从微博到第三方的消息请求
         ProvideMessageForWeiboResponse response = new ProvideMessageForWeiboResponse();
@@ -342,10 +324,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         if (mShareVideoView.isChecked()) {
             format = getString(R.string.weibosdk_demo_share_video_template);
             text = String.format(format, getString(R.string.weibosdk_demo_share_video_demo), demoUrl);
-        }
-        if (mShareVoiceView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_voice_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_voice_demo), demoUrl);
         }
 
         return text;
@@ -436,25 +414,5 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         return videoObject;
     }
 
-    /**
-     * 创建多媒体（音频）消息对象。
-     *
-     * @return 多媒体（音乐）消息对象。
-     */
-    private VoiceObject getVoiceObj() {
-        // 创建媒体消息
-        VoiceObject voiceObject = new VoiceObject();
-        voiceObject.identify = Utility.generateGUID();
-        voiceObject.title = mShareVoiceView.getTitle();
-        voiceObject.description = mShareVoiceView.getShareDesc();
 
-        // 设置 Bitmap 类型的图片到视频对象里
-        voiceObject.setThumbImage(mShareVoiceView.getThumbBitmap());
-        voiceObject.actionUrl = mShareVoiceView.getShareUrl();
-        voiceObject.dataUrl = "www.weibo.com";
-        voiceObject.dataHdUrl = "www.weibo.com";
-        voiceObject.duration = 10;
-        voiceObject.defaultText = "Voice 默认文案";
-        return voiceObject;
-    }
 }

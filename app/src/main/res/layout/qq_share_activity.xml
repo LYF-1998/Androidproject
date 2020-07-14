@@ -289,29 +289,6 @@
             </LinearLayout>
 
             <!--ARK 信息输入-->
-            <LinearLayout
-                android:id="@+id/qqshare_arkInfo_container"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/qqshare_item_container_margin_left"
-                android:layout_marginRight="@dimen/qqshare_item_container_margin_right"
-                android:layout_marginTop="@dimen/qqshare_item_container_margin_top"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left|center_vertical"
-                    android:text="@string/qqshare_ark_lable" />
-
-                <EditText
-                    android:id="@+id/shareqq_ark_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/qqshare_ark_hint"
-                    android:text="" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
