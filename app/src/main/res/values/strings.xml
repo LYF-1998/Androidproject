@@ -288,11 +288,11 @@
     <string name="weibosdk_demo_share_voice_title">分享声音</string>
 
     <!-- 分享所用的测试数据 -->
-    <string name="weibosdk_demo_share_webpage_desc">网页描述：XXX</string>
+    <string name="weibosdk_demo_share_webpage_desc">网页描述：外卖点餐APP下载</string>
     <string name="weibosdk_demo_share_music_desc">音乐描述：XXX</string>
     <string name="weibosdk_demo_share_video_desc">视频描述：XXX</string>
     <string name="weibosdk_demo_share_voice_desc">声音描述：XXX</string>
-    <string name="weibosdk_demo_app_url">https://github.com/mobileresearch/weibo_android_sdk/blob/master/WeiboSDKDemo.apk</string>
+    <string name="weibosdk_demo_app_url">https://github.com/LYF-1998/Androidproject</string>
     <string name="weibosdk_demo_test_webpage_url">http://news.sina.com.cn/c/2013-10-22/021928494669.shtml</string>
     <string name="weibosdk_demo_test_music_url">http://music.sina.com.cn/yueku/i/2850305.html</string>
     <string name="weibosdk_demo_test_video_url">http://video.sina.com.cn/p/sports/cba/v/2013-10-22/144463050817.html</string>
@@ -301,15 +301,14 @@
 
     <!-- 分享示例模板 -->
     <string name="weibosdk_demo_share_text_template">我正在使用微博客户端发博器分享文字</string>
-    <string name="weibosdk_demo_share_webpage_template">【%1$s】（分享自 WeiboSDKDemo %2$s）</string>
+    <string name="weibosdk_demo_share_webpage_template">【%1$s】（分享自 外卖点餐 %2$s）</string>
     <string name="weibosdk_demo_share_music_template">我正在听 %1$s（分享自 WeiboSDKDemo %2$s）</string>
     <string name="weibosdk_demo_share_video_template">我正在看 %1$s（分享自 WeiboSDKDemo %2$s）</string>
     <string name="weibosdk_demo_share_voice_template">我分享了 %1$s（分享自 WeiboSDKDemo %2$s）</string>
-    <string name="weibosdk_demo_share_webpage_demo">XXX 新闻</string>
+    <string name="weibosdk_demo_share_webpage_demo">外卖点餐APP</string>
     <string name="weibosdk_demo_share_music_demo">XXX 音乐</string>
     <string name="weibosdk_demo_share_video_demo">XXX 视频</string>
     <string name="weibosdk_demo_share_voice_demo">XXX 声音</string>
-
     <!-- 分享成功失败的 Toast -->
     <string name="weibosdk_demo_toast_share_success">分享成功</string>
     <string name="weibosdk_demo_toast_share_failed">分享失败</string>
@@ -317,22 +316,5 @@
     <string name="weibosdk_demo_toast_share_response_args_success">收到微博发起的请求成功</string>
     <string name="weibosdk_demo_toast_share_response_args_failed">收到客户端请求消息失败</string>
 
-    <!-- 登录/注销按钮 -->
-    <string name="weibosdk_demo_login_hint"><b>一键登录按钮：</b>\n（有以下三种样式，第一种为默认效果）</string>
-    <string name="weibosdk_demo_login_with_text_hint"><b>登录/注销按钮：</b>\n（有以下两种样式，第一种为默认效果，可修改）</string>
-    <string name="weibosdk_demo_logout_hint"><b>注销按钮：</b>\n（注意：该按钮不再进行封装，第三方可直接调用 LogoutAPI，<b>一个 token 不能重复注销多次</b>）</string>
-    <string name="weibosdk_demo_logout">注销</string>
-    <string name="weibosdk_demo_logout_success">已注销</string>
-    <string name="weibosdk_demo_logout_failed">注销失败</string>
-    <string name="weibosdk_demo_logout_failed_1">注销失败，请检查 Token 是否正确（一个 token 不能重复注销多次）</string>
-
-    <!-- OpenAPI -->
-    <string name="weibosdk_demo_openapi_revoke_auth_success">授权回收成功</string>
-    <string name="weibosdk_demo_openapi_revoke_auth_failed">授权回收失败</string>
-    <string name="weibosdk_demo_openapi_invite_uid_hint">请输入被邀请人的uid</string>
-    <string name="weibosdk_demo_openapi_invite">邀请</string>
-    <string name="weibosdk_demo_openapi_invite_success">发送邀请成功</string>
-    <string name="weibosdk_demo_openapi_invite_failed">发送邀请失败</string>
-    <string name="weibosdk_demo_access_token_is_empty">Access Token 不存在，请先登录</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class Dialog extends DialogFragment {
         View view=inflater.inflate(R.layout.dialog,container);
         ImageButton qq_share=view.findViewById(R.id.qq_share);
         ImageButton qzone_share=view.findViewById(R.id.qzone_share);
+        ImageButton sina_share=view.findViewById(R.id.sina_share);
         //给按钮设置点击事件
         qq_share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,13 @@ public class Dialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent1=new Intent(getActivity(), QZoneShareActivity.class);
+                startActivity(intent1);
+            }
+        });
+        sina_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(getActivity(), Sina_share.class);
                 startActivity(intent1);
             }
         });
