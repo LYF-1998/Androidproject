@@ -12,7 +12,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.example.androidproject"
-        minSdkVersion 22
+        minSdkVersion 28
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -29,7 +29,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -47,4 +46,7 @@ dependencies {
     implementation files('src/main/jniLibs/Json/jackson-core-2.2.3.jar')
     implementation files('src/main/jniLibs/Json/jackson-databind-2.2.3.jar')
     implementation files('libs/core_3.0.1.jar')
+    implementation files('libs/open_sdk_r8353806_lite.jar')
+    //compile(name:'core-4.3.1-openDefaultRelease', ext:'aar')
+    implementation files('libs/weiboSDKCore_3.1.4.jar')
 }

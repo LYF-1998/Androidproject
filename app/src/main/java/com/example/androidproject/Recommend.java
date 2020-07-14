@@ -17,8 +17,15 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.androidproject.Tencent_activitys.QQShareActivity;
+import com.example.androidproject.Tencent_share.AppConstants;
 import com.google.gson.Gson;
+import com.tencent.connect.share.QQShare;
+import com.tencent.tauth.Tencent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,6 +65,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
     private Context mContext;
     private CommandAdapter mAdapter = null;
     private ListView listView;
+    public static Tencent mTencent;
     // private  String[] names={"白斩鸡","地三鲜","剁椒鱼头","干锅土豆","酸菜鱼","梅菜扣肉"};
     // private String[]  price={"23","22","18","27","14","15"};
     // private String[]  hot={"156","234","121","54","34","20"};
@@ -113,7 +121,6 @@ public class Recommend extends Fragment implements View.OnClickListener{
     public void onStart() {
         super.onStart();
         bindViews();
-
         try {
             creatList();
         } catch (ExecutionException e) {
@@ -149,7 +156,6 @@ public class Recommend extends Fragment implements View.OnClickListener{
         search_confirm=getView().findViewById(R.id.search_confirm);
         search_confirm.setOnClickListener(this);
         search=getView().findViewById(R.id.search);
-        location.setText(Content.Location);
         weather = getView().findViewById(R.id.weather);
         weather.setOnClickListener(this);
         command1=getView().findViewById(R.id.command1);
@@ -160,6 +166,7 @@ public class Recommend extends Fragment implements View.OnClickListener{
         weather_icon = getView().findViewById(R.id.weather_icon);
         share = getView().findViewById(R.id.share);
         share.setOnClickListener(this);
+        mTencent = Tencent.createInstance("101885901", getContext(), AppConstants.APP_AUTHORITIES);
     }
 
     private void creatList() throws ExecutionException, InterruptedException {
@@ -261,11 +268,12 @@ public class Recommend extends Fragment implements View.OnClickListener{
                         Content.Location = wcity+"市"+wdistrict+"区";
                         Content.Weather = wweather;
                         Content.Temperature = wtemperature;
+                        String city=wcity;
                         String scode = "light_"+String.valueOf(code)+"d";
                         Log.v("@@@@",scode);
                         int icon_id = getResources().getIdentifier(scode,"drawable", "com.example.androidproject");
                         weather_icon.setBackgroundResource(icon_id);
-                        location.setText(wcity);
+                        location.setText(city);
                         weather.setText(Content.Weather + " " + Content.Temperature + "℃");
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -300,8 +308,22 @@ public class Recommend extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), Content.Location+"，"+Content.Weather+"，"+Content.Wind+"级，"+Content.Temperature+"℃。", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.share:
-
+                showDialog();
                 break;
         }
+    }
+    public void showDialog(){
+        FragmentManager manager=getChildFragmentManager();
+        //创建事务对象(一组原子性的操作,需要提交以后生效)
+        FragmentTransaction transaction=manager.beginTransaction();
+        Dialog dialog=new Dialog();//创建Fragment类的对象
+        //添加Fragment
+        if(!dialog.isAdded()){//判断是否被添加过,防止被重复添加
+            transaction.add(dialog,"dialog_tag");
+        }
+        //显示Fragment
+        transaction.show(dialog);
+        //提交事务
+        transaction.commit();
     }
 }
